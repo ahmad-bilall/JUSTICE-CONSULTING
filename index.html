@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Justice Consulting | Elite Strategic Counsel & Integrity</title>
   <!-- Google Fonts + Font Awesome Premium Refined -->
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
@@ -16,7 +16,6 @@
       box-sizing: border-box;
     }
 
-    /* Elevated Premium Color Palette: Deep Charcoal, Rich Gold, Ivory, Subtle Warmth */
     body {
       font-family: 'Inter', sans-serif;
       background-color: #FEFAF5;
@@ -26,21 +25,18 @@
       overflow-x: hidden;
     }
 
-    /* Refined custom cursor only for desktop (disabled on touch devices automatically) */
-    @media (min-width: 1024px) {
-      body {
-        cursor: none;
-      }
+    /* Custom cursor - hidden on touch devices */
+    @media (min-width: 1025px) {
       .cursor-dot, .cursor-outline {
         display: block;
       }
-    }
-    @media (max-width: 1023px) {
-      .cursor-dot, .cursor-outline {
-        display: none !important;
-      }
       body {
-        cursor: auto;
+        cursor: none;
+      }
+    }
+    @media (max-width: 1024px) {
+      .cursor-dot, .cursor-outline {
+        display: none;
       }
     }
 
@@ -65,7 +61,7 @@
       position: fixed;
       pointer-events: none;
       z-index: 9998;
-      transition: transform 0.2s cubic-bezier(0.2, 0.9, 0.4, 1.1), width 0.2s, height 0.2s, background 0.2s, border-color 0.2s;
+      transition: transform 0.2s cubic-bezier(0.2, 0.9, 0.4, 1.1), width 0.2s, height 0.2s, background 0.2s;
       transform: translate(-50%, -50%);
       backdrop-filter: blur(1px);
       background: rgba(198, 161, 91, 0.02);
@@ -78,23 +74,32 @@
     .container {
       max-width: 1320px;
       margin: 0 auto;
-      padding: 0 24px;
+      padding: 0 48px;
     }
 
-    /* Responsive padding refinement */
+    /* Responsive container padding */
+    @media (max-width: 992px) {
+      .container {
+        padding: 0 32px;
+      }
+    }
     @media (max-width: 768px) {
+      .container {
+        padding: 0 24px;
+      }
+    }
+    @media (max-width: 576px) {
       .container {
         padding: 0 20px;
       }
     }
 
-    /* Premium Buttons — refined textures, touch friendly */
     .btn-primary {
       display: inline-block;
       background: #1F2A38;
       color: #FFFCF8;
       font-weight: 500;
-      padding: 14px 32px;
+      padding: 14px 40px;
       border-radius: 0;
       text-decoration: none;
       letter-spacing: 1.2px;
@@ -108,7 +113,6 @@
       z-index: 1;
       overflow: hidden;
       box-shadow: 0 2px 8px rgba(0,0,0,0.02);
-      text-align: center;
     }
     .btn-primary::before {
       content: '';
@@ -133,7 +137,7 @@
       background: transparent;
       color: #1F2A38;
       font-weight: 500;
-      padding: 10px 28px;
+      padding: 12px 34px;
       border-radius: 0;
       text-decoration: none;
       border: 1px solid #9B7A4A;
@@ -142,7 +146,6 @@
       font-size: 0.8rem;
       letter-spacing: 0.8px;
       cursor: pointer;
-      text-align: center;
     }
     .btn-outline:hover {
       background: #C6A15B;
@@ -151,40 +154,50 @@
       transform: translateY(-2px);
       box-shadow: 0 8px 18px rgba(198,161,91,0.2);
     }
-    @media (max-width: 640px) {
+    @media (max-width: 576px) {
       .btn-primary, .btn-outline {
-        padding: 12px 24px;
+        padding: 10px 24px;
         font-size: 0.75rem;
       }
     }
 
     .section-title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 3rem;
+      font-size: 3.4rem;
       font-weight: 600;
       letter-spacing: -0.01em;
-      margin-bottom: 1rem;
+      margin-bottom: 1.2rem;
       line-height: 1.2;
       color: #131F2C;
+    }
+    @media (max-width: 992px) {
+      .section-title {
+        font-size: 3rem;
+      }
     }
     @media (max-width: 768px) {
       .section-title {
         font-size: 2.5rem;
       }
     }
-    @media (max-width: 480px) {
+    @media (max-width: 576px) {
       .section-title {
-        font-size: 2rem;
+        font-size: 2.2rem;
       }
     }
     .section-sub {
-      font-size: 1rem;
+      font-size: 1.05rem;
       color: #4F5B66;
       max-width: 700px;
-      margin: 0 auto 2rem auto;
-      line-height: 1.6;
+      margin: 0 auto 2.8rem auto;
+      line-height: 1.65;
       font-weight: 400;
-      padding: 0 8px;
+    }
+    @media (max-width: 768px) {
+      .section-sub {
+        font-size: 0.95rem;
+        margin-bottom: 2rem;
+      }
     }
     .gold-accent {
       color: #C6A15B;
@@ -192,7 +205,7 @@
       letter-spacing: -0.2px;
     }
 
-    /* Header: Premium glass morphism + mobile friendly */
+    /* Header - Premium glass morphism with mobile hamburger */
     header {
       position: fixed;
       top: 0;
@@ -200,12 +213,12 @@
       background: rgba(254, 250, 245, 0.94);
       backdrop-filter: blur(14px);
       z-index: 1000;
-      padding: 18px 0;
+      padding: 22px 0;
       border-bottom: 1px solid rgba(198, 161, 91, 0.2);
       transition: all 0.4s ease;
     }
     header.scrolled {
-      padding: 10px 0;
+      padding: 12px 0;
       background: rgba(254, 250, 245, 0.98);
       box-shadow: 0 12px 28px -12px rgba(0, 0, 0, 0.08);
     }
@@ -213,86 +226,138 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
-      gap: 16px;
     }
     .logo {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.7rem;
+      font-size: 2rem;
       font-weight: 700;
       letter-spacing: 1px;
       color: #1E2A32;
       border-left: 4px solid #C6A15B;
-      padding-left: 14px;
+      padding-left: 18px;
       transition: all 0.3s ease;
     }
     .logo span { color: #C6A15B; font-weight: 700; }
+    @media (max-width: 768px) {
+      .logo {
+        font-size: 1.5rem;
+        padding-left: 12px;
+      }
+    }
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.8rem;
+      color: #1F2A38;
+      cursor: pointer;
+      transition: 0.3s;
+    }
     .nav-links {
       display: flex;
-      gap: 28px;
+      gap: 48px;
       align-items: center;
-      flex-wrap: wrap;
     }
     .nav-links a {
       text-decoration: none;
       font-weight: 500;
       color: #2C3F4B;
       transition: 0.25s;
-      font-size: 0.8rem;
+      font-size: 0.85rem;
       letter-spacing: 0.5px;
       text-transform: uppercase;
       cursor: pointer;
       position: relative;
-      white-space: nowrap;
     }
-    @media (max-width: 680px) {
-      .nav-flex {
-        flex-direction: column;
-        gap: 12px;
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 0;
+      height: 1.5px;
+      background: #C6A15B;
+      transition: width 0.3s ease;
+    }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-links a:hover { color: #C6A15B; }
+    @media (max-width: 992px) {
+      .nav-links {
+        gap: 32px;
+      }
+      .nav-links a {
+        font-size: 0.8rem;
+      }
+    }
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
       }
       .nav-links {
-        gap: 20px;
-        justify-content: center;
+        position: fixed;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: rgba(254, 250, 245, 0.98);
+        backdrop-filter: blur(20px);
+        flex-direction: column;
+        gap: 24px;
+        padding: 40px 24px;
+        transform: translateY(-150%);
+        transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        z-index: 999;
+        border-bottom: 1px solid rgba(198, 161, 91, 0.3);
+        box-shadow: 0 20px 30px -12px rgba(0,0,0,0.1);
       }
-      .logo {
-        font-size: 1.5rem;
+      .nav-links.active {
+        transform: translateY(0);
       }
-    }
-    @media (max-width: 480px) {
       .nav-links a {
-        font-size: 0.7rem;
+        font-size: 1rem;
+        padding: 8px 0;
       }
-      .nav-links .btn-outline {
-        padding: 5px 16px;
-        font-size: 0.7rem;
+      .nav-links a::after {
+        bottom: 0;
       }
     }
 
-    /* Hero: responsive layout */
+    /* Hero Section - Preserve animation */
     .hero {
       min-height: 100vh;
       display: flex;
       align-items: center;
       background: radial-gradient(circle at 10% 20%, rgba(245, 238, 226, 0.6), #FEFAF5), linear-gradient(135deg, #FEF9F0 0%, #FAF3E8 100%);
       position: relative;
-      padding-top: 120px;
-      padding-bottom: 60px;
+      padding-top: 100px;
       overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -30%;
+      right: -15%;
+      width: 70%;
+      height: 140%;
+      background: radial-gradient(circle, rgba(198,161,91,0.05) 0%, transparent 70%);
+      animation: slowDrift 22s infinite alternate;
+    }
+    @keyframes slowDrift {
+      0% { transform: translate(0,0) rotate(0deg);}
+      100% { transform: translate(-35px, 25px) rotate(6deg);}
     }
     .hero-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 50px;
+      gap: 70px;
       align-items: center;
     }
     @media (max-width: 992px) {
       .hero-grid {
         grid-template-columns: 1fr;
+        gap: 50px;
         text-align: center;
-        gap: 40px;
       }
       .hero-desc {
-        max-width: 100%;
         margin-left: auto;
         margin-right: auto;
       }
@@ -306,57 +371,57 @@
       color: #A57C42;
       font-weight: 600;
       font-size: 0.7rem;
-      padding: 6px 16px;
-      letter-spacing: 1.6px;
+      padding: 7px 18px;
+      letter-spacing: 1.8px;
       text-transform: uppercase;
-      margin-bottom: 1.2rem;
+      margin-bottom: 1.5rem;
       border-radius: 30px;
       backdrop-filter: blur(2px);
     }
     .hero-title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 4rem;
+      font-size: 4.7rem;
       font-weight: 700;
       line-height: 1.1;
-      margin-bottom: 1.2rem;
+      margin-bottom: 1.6rem;
       color: #0F1A24;
+    }
+    @media (max-width: 992px) {
+      .hero-title {
+        font-size: 3.8rem;
+      }
     }
     @media (max-width: 768px) {
       .hero-title {
         font-size: 3rem;
       }
     }
-    @media (max-width: 480px) {
+    @media (max-width: 576px) {
       .hero-title {
-        font-size: 2.4rem;
+        font-size: 2.5rem;
       }
     }
-    .hero-title .elegant {
-      border-bottom: 3px solid #C6A15B;
-      display: inline-block;
-      padding-bottom: 4px;
-    }
     .hero-desc {
-      font-size: 1rem;
+      font-size: 1.1rem;
       color: #2F414F;
-      margin-bottom: 2rem;
-      line-height: 1.6;
+      margin-bottom: 2.5rem;
+      line-height: 1.65;
+      max-width: 90%;
+    }
+    @media (max-width: 992px) {
+      .hero-desc {
+        max-width: 100%;
+      }
     }
     .hero-stats {
       display: flex;
-      gap: 40px;
-      margin-top: 40px;
+      gap: 54px;
+      margin-top: 52px;
       flex-wrap: wrap;
-      justify-content: flex-start;
-    }
-    @media (max-width: 768px) {
-      .hero-stats {
-        justify-content: center;
-      }
     }
     .stat-block .stat-number {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 2.2rem;
+      font-size: 2.4rem;
       font-weight: 700;
       color: #C6A15B;
       transition: 0.2s;
@@ -367,200 +432,262 @@
       border-radius: 8px;
       box-shadow: 0 35px 50px -20px rgba(0,0,0,0.25);
       transition: 0.5s;
-      max-height: 500px;
-      object-fit: cover;
     }
+    .hero-image img:hover { transform: scale(1.01); filter: brightness(1); }
 
-    /* Pillars responsive grid */
+    /* Pillars - responsive grid */
     .pillars {
-      padding: 80px 0;
+      padding: 120px 0;
       background: #FFFFFF;
+    }
+    @media (max-width: 768px) {
+      .pillars {
+        padding: 80px 0;
+      }
     }
     .pillars-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 40px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 55px;
       margin-top: 40px;
+    }
+    @media (max-width: 992px) {
+      .pillars-grid {
+        gap: 35px;
+      }
+    }
+    @media (max-width: 768px) {
+      .pillars-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
     }
     .pillar-card {
       background: #FFFDF9;
-      padding: 40px 28px;
+      padding: 48px 36px;
       border-bottom: 3px solid #E9DFD1;
       transition: all 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1);
       text-align: center;
       cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.02);
     }
     .pillar-card:hover {
       border-bottom-color: #C6A15B;
-      transform: translateY(-8px);
+      transform: translateY(-12px);
       box-shadow: 0 28px 40px -18px rgba(0,0,0,0.12);
     }
     .pillar-icon {
-      font-size: 2.8rem;
+      font-size: 3rem;
       color: #C6A15B;
-      margin-bottom: 24px;
+      margin-bottom: 28px;
+      transition: transform 0.4s ease;
     }
+    .pillar-card:hover .pillar-icon { transform: scale(1.08) rotate(2deg);}
 
-    /* Practice area responsive flex */
+    /* Practice area - responsive flex */
+    .practice {
+      background: #FCF8F2;
+      padding: 120px 0;
+    }
+    @media (max-width: 768px) {
+      .practice {
+        padding: 80px 0;
+      }
+    }
     .practice-flex {
       display: flex;
-      gap: 50px;
+      gap: 80px;
       align-items: center;
       flex-wrap: wrap;
     }
-    .practice-content {
-      flex: 1 1 45%;
+    @media (max-width: 992px) {
+      .practice-flex {
+        gap: 50px;
+      }
     }
-    .practice-image {
-      flex: 1 1 45%;
-    }
-    .practice-image img {
-      width: 100%;
-      border-radius: 16px;
-      box-shadow: 0 20px 30px -12px rgba(0,0,0,0.1);
-      max-height: 420px;
-      object-fit: cover;
-    }
-    @media (max-width: 900px) {
+    @media (max-width: 768px) {
       .practice-flex {
         flex-direction: column;
       }
-      .practice-content, .practice-image {
-        flex: 1 1 100%;
-      }
     }
     .practice-list li {
-      margin-bottom: 20px;
+      margin-bottom: 24px;
       display: flex;
       align-items: center;
-      gap: 16px;
-      font-size: 1rem;
+      gap: 18px;
+      font-size: 1.05rem;
       font-weight: 500;
       border-bottom: 1px solid #E8DCCE;
-      padding-bottom: 12px;
+      padding-bottom: 14px;
       cursor: pointer;
       transition: 0.3s;
       color: #1F2F3C;
     }
-    .practice-list i { color: #C6A15B; font-size: 1.3rem; width: 32px; }
+    .practice-list li:hover {
+      transform: translateX(14px);
+      border-bottom-color: #C6A15B;
+      color: #C6A15B;
+    }
+    .practice-list i { color: #C6A15B; font-size: 1.4rem; width: 32px; }
+    .practice-image img {
+      width: 100%;
+      border-radius: 16px;
+      box-shadow: 0 20px 30px -12px rgba(0,0,0,0.1);
+      transition: 0.5s;
+    }
 
-    /* Testimonials grid */
+    /* Testimonials - responsive grid */
+    .testimonials {
+      padding: 120px 0;
+      background: #FFFFFF;
+    }
+    @media (max-width: 768px) {
+      .testimonials {
+        padding: 80px 0;
+      }
+    }
     .testimonial-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 40px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 50px;
       margin-top: 55px;
+    }
+    @media (max-width: 768px) {
+      .testimonial-grid {
+        grid-template-columns: 1fr;
+        gap: 35px;
+      }
     }
     .testimonial-card {
       background: #FEFBF7;
-      padding: 38px 32px;
+      padding: 48px 48px;
       border-left: 6px solid #C6A15B;
       transition: all 0.4s;
       cursor: pointer;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.02);
     }
-    .client {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      margin-top: 20px;
+    .testimonial-card:hover {
+      transform: translateX(8px) translateY(-6px);
+      box-shadow: 0 24px 36px -16px rgba(0,0,0,0.1);
+    }
+    @media (max-width: 576px) {
+      .testimonial-card {
+        padding: 32px 28px;
+      }
     }
     .client-avatar {
-      width: 48px;
-      height: 48px;
+      width: 52px;
+      height: 52px;
       background: linear-gradient(135deg, #E8DDCF, #DBCEBE);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.3rem;
+      font-size: 1.4rem;
       color: #A57C42;
     }
 
-    /* Logo slider - touch responsive */
+    /* Logo slider - responsive */
+    .logo-slider-wrapper {
+      overflow: hidden;
+      width: 100%;
+      margin: 40px 0;
+    }
     #logoSlider {
       display: flex;
-      gap: 50px;
+      gap: 60px;
       width: max-content;
-      animation: scrollLogos 25s linear infinite;
+      animation: scrollLogos 22s linear infinite;
     }
     @keyframes scrollLogos {
       0% { transform: translateX(0); }
       100% { transform: translateX(-50%); }
     }
-    .logo-slider-wrapper {
-      overflow: hidden;
-      margin: 40px 0 20px;
-      width: 100%;
-    }
     .logo-slider-wrapper img {
-      height: 38px;
+      height: 40px;
       filter: grayscale(0.3);
       opacity: 0.7;
       transition: 0.3s;
     }
-    @media (max-width: 640px) {
-      #logoSlider {
-        gap: 35px;
-      }
-      .logo-slider-wrapper img {
-        height: 30px;
-      }
+    @media (max-width: 768px) {
+      #logoSlider { gap: 40px; }
+      .logo-slider-wrapper img { height: 32px; }
+    }
+    @media (max-width: 576px) {
+      #logoSlider { gap: 30px; }
+      .logo-slider-wrapper img { height: 28px; }
     }
 
-    /* CTA section */
+    /* CTA */
     .cta-justice {
       background: #141F2A;
-      padding: 80px 0;
+      padding: 100px 0;
       text-align: center;
+      position: relative;
+      background-image: radial-gradient(circle at 20% 40%, rgba(198,161,91,0.08) 1.5%, transparent 2%);
+      background-size: 28px 28px;
+    }
+    @media (max-width: 768px) {
+      .cta-justice {
+        padding: 70px 0;
+      }
     }
     .cta-justice h2 {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 2.8rem;
+      font-size: 3.2rem;
       color: #FEF6E8;
       margin-bottom: 18px;
     }
     @media (max-width: 768px) {
       .cta-justice h2 {
-        font-size: 2.2rem;
+        font-size: 2.5rem;
+      }
+    }
+    @media (max-width: 576px) {
+      .cta-justice h2 {
+        font-size: 2rem;
       }
     }
 
-    /* Footer grid responsive */
+    /* Footer - responsive grid */
+    footer {
+      background: #0E151D;
+      color: #BFC9D4;
+      padding: 70px 0 40px;
+      border-top: 1px solid rgba(198,161,91,0.15);
+    }
     .footer-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 40px;
+      grid-template-columns: 1.7fr 1fr 1fr 1.2fr;
+      gap: 50px;
       margin-bottom: 50px;
     }
-    .footer-links a {
-      display: block;
-      color: #B6C2D1;
-      text-decoration: none;
-      margin-bottom: 12px;
-      font-size: 0.85rem;
-      transition: 0.2s;
-      cursor: pointer;
+    @media (max-width: 992px) {
+      .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px;
+      }
+    }
+    @media (max-width: 576px) {
+      .footer-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 35px;
+      }
+    }
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: #EADDBD;
+      margin-bottom: 20px;
+      display: inline-block;
     }
     .copyright {
       text-align: center;
       border-top: 1px solid #232E3A;
       padding-top: 35px;
       font-size: 0.75rem;
-    }
-    @media (max-width: 560px) {
-      .footer-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 30px;
-      }
-    }
-    @media (max-width: 480px) {
-      .footer-grid {
-        grid-template-columns: 1fr;
-        text-align: center;
-      }
-      .footer-links a {
-        text-align: center;
-      }
     }
   </style>
 </head>
@@ -572,12 +699,13 @@
 <header>
   <div class="container nav-flex">
     <div class="logo">JUSTICE <span>CONSULTING</span></div>
-    <div class="nav-links">
+    <button class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></button>
+    <div class="nav-links" id="navLinks">
       <a href="#">Home</a>
       <a href="#">Expertise</a>
       <a href="#">Advocacy</a>
       <a href="#">Insights</a>
-      <a href="#" class="btn-outline" style="padding: 6px 20px;">Private Counsel</a>
+      <a href="#" class="btn-outline" style="padding: 6px 24px;">Private Counsel</a>
     </div>
   </div>
 </header>
@@ -588,27 +716,18 @@
       <div class="hero-badge"><i class="fas fa-scale-balanced" style="margin-right: 8px;"></i> Est. 1998 · Sovereign Counsel</div>
       <h1 class="hero-title">Where justice meets<br>unassailable foresight.</h1>
       <p class="hero-desc">Exclusive strategic counsel to institutions, global enterprises, and sovereign entities. Precision, discretion, and relentless advocacy.</p>
-      <div style="display: flex; gap: 16px; flex-wrap: wrap; justify-content: flex-start;">
+      <div style="display: flex; gap: 16px; flex-wrap: wrap;">
         <a href="#" class="btn-primary">Secure consultation →</a>
         <a href="#" class="btn-outline">Our heritage</a>
       </div>
       <div class="hero-stats">
-        <div class="stat-block">
-          <span class="stat-number" data-target="97">0</span>%<br>
-          <span style="font-size:0.7rem; letter-spacing:0.5px;">SUCCESS RATE</span>
-        </div>
-        <div class="stat-block">
-          <span class="stat-number" data-target="18.4">0</span>B+<br>
-          <span style="font-size:0.7rem;">DISPUTES RESOLVED</span>
-        </div>
-        <div class="stat-block">
-          <span class="stat-number" data-target="52">0</span>+<br>
-          <span style="font-size:0.7rem;">GLOBAL HUBS</span>
-        </div>
+        <div class="stat-block"><span class="stat-number" data-target="97">0</span>%<br><span style="font-size:0.7rem;">SUCCESS RATE</span></div>
+        <div class="stat-block"><span class="stat-number" data-target="18.4">0</span>B+<br><span style="font-size:0.7rem;">DISPUTES RESOLVED</span></div>
+        <div class="stat-block"><span class="stat-number" data-target="52">0</span>+<br><span style="font-size:0.7rem;">GLOBAL HUBS</span></div>
       </div>
     </div>
     <div class="hero-image">
-      <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80" alt="Prestigious law library" loading="lazy">
+      <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=1600&q=80" alt="Prestigious law library">
     </div>
   </div>
 </section>
@@ -640,11 +759,11 @@
   </div>
 </section>
 
-<section class="practice" style="padding:70px 0;">
+<section class="practice">
   <div class="container practice-flex">
     <div class="practice-content" data-aos="fade-right">
       <span class="hero-badge" style="background:#E2D5C6;">Areas of mastery</span>
-      <h2 class="section-title" style="font-size: 2.8rem;">Counsel that <span class="gold-accent">commands authority</span></h2>
+      <h2 class="section-title" style="font-size: 3rem;">Counsel that <span class="gold-accent">commands authority</span></h2>
       <p style="margin: 1rem 0 0.5rem; font-size: 1rem; color:#415A6B;">We navigate complex legal frontiers with decisive clarity and unmatched sophistication.</p>
       <ul class="practice-list">
         <li><i class="fas fa-building"></i> Corporate & Institutional Litigation</li>
@@ -655,7 +774,7 @@
       <a href="#" class="btn-primary" style="margin-top:32px; display:inline-block; background:#C6A15B; border:1px solid #C6A15B; color:#141F2A;">Explore full capabilities →</a>
     </div>
     <div class="practice-image" data-aos="fade-left">
-      <img src="https://images.unsplash.com/photo-1505664194779-8beaceb93744?auto=format&fit=crop&w=800&q=80" alt="Boardroom counsel" loading="lazy">
+      <img src="https://images.unsplash.com/photo-1505664194779-8beaceb93744?auto=format&fit=crop&w=800&q=80" alt="Boardroom counsel">
     </div>
   </div>
 </section>
@@ -670,14 +789,14 @@
     <div class="testimonial-grid">
       <div class="testimonial-card" data-aos="fade-right" data-aos-delay="100">
         <div class="testimonial-text">“Justice Consulting delivered a landmark victory in a multi-jurisdictional dispute that redefined precedent. Their analytical rigor and poise under pressure are unmatched.”</div>
-        <div class="client">
+        <div class="client" style="display:flex; align-items:center; gap:16px; margin-top:24px;">
           <div class="client-avatar"><i class="fas fa-user-tie"></i></div>
           <div><strong>Isabelle R. Laurent</strong><br><span style="font-size:0.7rem;">General Counsel, Meridian Group</span></div>
         </div>
       </div>
       <div class="testimonial-card" data-aos="fade-left" data-aos-delay="200">
         <div class="testimonial-text">“When reputation and regulatory exposure were paramount, Justice Consulting crafted a defense that not only prevailed but fortified our global standing.”</div>
-        <div class="client">
+        <div class="client" style="display:flex; align-items:center; gap:16px; margin-top:24px;">
           <div class="client-avatar"><i class="fas fa-chart-line"></i></div>
           <div><strong>Alexander T. Vance</strong><br><span style="font-size:0.7rem;">Chairman, Vance Holdings</span></div>
         </div>
@@ -686,29 +805,27 @@
   </div>
 </section>
 
-<section style="margin: 40px 0 20px;">
-  <div class="container">
-    <div style="text-align:center; margin-bottom:20px;">
-      <span style="font-size:0.75rem; letter-spacing:1px; color:#888;">TRUSTED BY LEADING ORGANIZATIONS</span>
-    </div>
-    <div class="logo-slider-wrapper">
-      <div id="logoSlider" style="display:flex; gap:50px; width:max-content; animation:scrollLogos 22s linear infinite;">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" style="height:38px;" alt="microsoft" loading="lazy">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" style="height:38px;" alt="amazon" loading="lazy">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" style="height:38px;" alt="apple" loading="lazy">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" style="height:38px;" alt="google" loading="lazy">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" style="height:38px;" alt="netflix" loading="lazy">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" style="height:38px;" alt="ibm" loading="lazy">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" style="height:38px;" alt="microsoft" loading="lazy">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" style="height:38px;" alt="amazon" loading="lazy">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" style="height:38px;" alt="apple" loading="lazy">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" style="height:38px;" alt="google" loading="lazy">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" style="height:38px;" alt="netflix" loading="lazy">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" style="height:38px;" alt="ibm" loading="lazy">
-      </div>
+<div class="container">
+  <div style="text-align:center; margin-bottom:20px;">
+    <span style="font-size:0.8rem; letter-spacing:1px; color:#888;">TRUSTED BY LEADING ORGANIZATIONS</span>
+  </div>
+  <div class="logo-slider-wrapper">
+    <div id="logoSlider">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" style="height:40px;">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" style="height:40px;">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" style="height:40px;">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" style="height:40px;">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" style="height:40px;">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" style="height:40px;">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" style="height:40px;">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" style="height:40px;">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" style="height:40px;">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" style="height:40px;">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" style="height:40px;">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" style="height:40px;">
     </div>
   </div>
-</section>
+</div>
 
 <section class="cta-justice">
   <div class="container" data-aos="zoom-in">
@@ -724,11 +841,11 @@
     <div class="footer-grid">
       <div data-aos="fade-up">
         <div class="footer-logo">JUSTICE CONSULTING</div>
-        <p style="margin: 12px 0 20px; font-size: 0.85rem; line-height: 1.6;">Global elite counsel · Where integrity meets legal eminence.</p>
+        <p style="margin: 12px 0 20px; font-size: 0.85rem;">Global elite counsel · Where integrity meets legal eminence.</p>
         <div style="display: flex; gap: 22px; font-size: 1.2rem;">
-          <i class="fab fa-linkedin-in" style="cursor: pointer; transition: 0.2s;" onmouseover="this.style.color='#C6A15B'" onmouseout="this.style.color='#B9C3D4'"></i>
-          <i class="fab fa-twitter" style="cursor: pointer; transition: 0.2s;" onmouseover="this.style.color='#C6A15B'" onmouseout="this.style.color='#B9C3D4'"></i>
-          <i class="far fa-building" style="cursor: pointer;" onmouseover="this.style.color='#C6A15B'" onmouseout="this.style.color='#B9C3D4'"></i>
+          <i class="fab fa-linkedin-in" style="cursor: pointer;"></i>
+          <i class="fab fa-twitter" style="cursor: pointer;"></i>
+          <i class="far fa-building" style="cursor: pointer;"></i>
         </div>
       </div>
       <div class="footer-links" data-aos="fade-up" data-aos-delay="100">
@@ -745,7 +862,7 @@
       </div>
       <div class="footer-links" data-aos="fade-up" data-aos-delay="300">
         <h4 style="color:#EADDBD; margin-bottom: 20px;">Connect</h4>
-        <a href="#"><i class="fas fa-phone-alt" style="margin-right: 8px;"></i> +44 20 7946 0138</a>
+        <a href="#"><i class="fas fa-phone-alt" style="margin-right: 10px;"></i> +44 20 7946 0138</a>
         <a href="#"><i class="fas fa-envelope"></i> counsel@justice.com</a>
         <a href="#">Geneva · New York · Singapore</a>
       </div>
@@ -758,50 +875,66 @@
 
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
-  AOS.init({ duration: 700, once: false, offset: 60, easing: 'ease-out' });
-  
-  // Counter with Intersection Observer for better mobile performance
-  const statNumbers = document.querySelectorAll('.stat-number');
-  let counted = false;
-  function startCounters() {
-    if(counted) return;
-    statNumbers.forEach(stat => {
+  AOS.init({ duration: 750, once: false, offset: 80, easing: 'ease-out' });
+
+  // Mobile menu toggle
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('navLinks');
+  if(menuToggle) {
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+      const icon = menuToggle.querySelector('i');
+      if(navLinks.classList.contains('active')) {
+        icon.classList.remove('fa-bars');
+        icon.classList.add('fa-times');
+      } else {
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+      }
+    });
+  }
+
+  // Counter animation
+  const stats = document.querySelectorAll('.stat-number');
+  let started = false;
+  function startCounter() {
+    stats.forEach(stat => {
       let target = parseFloat(stat.getAttribute('data-target'));
-      let current = 0;
-      let increment = target / 45;
-      let updateCounter = () => {
-        current += increment;
-        if(current < target) {
-          stat.innerText = current.toFixed(1);
-          requestAnimationFrame(updateCounter);
+      let count = 0;
+      let speed = target / 50;
+      function update() {
+        count += speed;
+        if (count < target) {
+          stat.innerText = count.toFixed(1);
+          requestAnimationFrame(update);
         } else {
           stat.innerText = target;
         }
-      };
-      updateCounter();
-    });
-    counted = true;
-  }
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if(entry.isIntersecting && !counted) {
-        startCounters();
-        observer.disconnect();
       }
+      update();
     });
-  }, { threshold: 0.4 });
-  const statsSection = document.querySelector('.hero-stats');
-  if(statsSection) observer.observe(statsSection);
+  }
+  function showStats() {
+    const section = document.querySelector('.hero-stats');
+    if(!section) return;
+    const top = section.getBoundingClientRect().top;
+    if (top < window.innerHeight - 100 && !started) {
+      startCounter();
+      started = true;
+    }
+  }
+  window.addEventListener('scroll', showStats);
+  showStats();
 
-  // Header scroll effect
+  // Header scroll
   window.addEventListener('scroll', () => {
     const header = document.querySelector('header');
-    if(window.scrollY > 30) header.classList.add('scrolled');
+    if(window.scrollY > 40) header.classList.add('scrolled');
     else header.classList.remove('scrolled');
   });
-  
-  // Cursor logic only for non-touch devices
-  if(window.innerWidth >= 1024) {
+
+  // Custom cursor animation (desktop only)
+  if(window.innerWidth > 1024) {
     const dot = document.querySelector('.cursor-dot');
     const outline = document.querySelector('.cursor-outline');
     if(dot && outline) {
@@ -815,7 +948,7 @@
         requestAnimationFrame(animate);
       }
       animate();
-      const interactive = document.querySelectorAll('a, button, .btn-primary, .btn-outline, .pillar-card, .testimonial-card, .practice-list li, .nav-links a, .footer-links a');
+      const interactive = document.querySelectorAll('a, button, .btn-primary, .btn-outline, .pillar-card, .testimonial-card, .practice-list li');
       interactive.forEach(el => {
         el.addEventListener('mouseenter', () => { outline.style.width = '64px'; outline.style.height = '64px'; outline.style.borderColor = '#D8B16B'; outline.style.backgroundColor = 'rgba(198,161,91,0.08)'; dot.style.backgroundColor = '#E5BC77'; });
         el.addEventListener('mouseleave', () => { outline.style.width = '44px'; outline.style.height = '44px'; outline.style.borderColor = 'rgba(198, 161, 91, 0.7)'; outline.style.backgroundColor = 'transparent'; dot.style.backgroundColor = '#C6A15B'; });
