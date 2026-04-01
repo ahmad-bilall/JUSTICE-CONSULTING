@@ -4,957 +4,1183 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Justice Consulting | Elite Strategic Counsel & Integrity</title>
-  <!-- Google Fonts + Font Awesome Premium Refined -->
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <!-- AOS Animation Library -->
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    :root {
+      --gold: #C9A96E;
+      --gold-light: #E8C98A;
+      --gold-dark: #9B7A42;
+      --ink: #0D1520;
+      --ink-mid: #1E2D3D;
+      --ink-soft: #2C3E50;
+      --cream: #FAF6EF;
+      --cream-warm: #F4EEE3;
+      --cream-deep: #EBE1D1;
+      --white: #FDFAF5;
+      --text-muted: #5A6A7A;
+      --text-light: #8A9BAC;
+      --border: rgba(201,169,110,0.2);
+      --shadow-gold: rgba(201,169,110,0.15);
     }
 
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+
     body {
-      font-family: 'Inter', sans-serif;
-      background-color: #FEFAF5;
-      color: #1E2A32;
-      line-height: 1.5;
-      scroll-behavior: smooth;
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      line-height: 1.6;
       overflow-x: hidden;
     }
 
-    /* Custom cursor - hidden on touch devices */
-    @media (min-width: 1025px) {
-      .cursor-dot, .cursor-outline {
-        display: block;
+    /* ─── SCROLLBAR ─── */
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--cream-deep); }
+    ::-webkit-scrollbar-thumb { background: var(--gold-dark); border-radius: 10px; }
+
+    /* ─── CUSTOM CURSOR ─── */
+    @media (pointer: fine) {
+      body { cursor: none; }
+      .c-dot, .c-ring {
+        position: fixed; pointer-events: none; z-index: 9999;
+        border-radius: 50%; transform: translate(-50%,-50%);
       }
-      body {
-        cursor: none;
-      }
-    }
-    @media (max-width: 1024px) {
-      .cursor-dot, .cursor-outline {
-        display: none;
+      .c-dot { width:7px; height:7px; background:var(--gold); transition: transform .08s; }
+      .c-ring {
+        width:40px; height:40px;
+        border: 1.5px solid rgba(201,169,110,.6);
+        transition: transform .18s cubic-bezier(.2,.9,.4,1.1), width .2s, height .2s;
       }
     }
 
-    .cursor-dot {
-      width: 6px;
-      height: 6px;
-      background-color: #C6A15B;
-      border-radius: 50%;
-      position: fixed;
-      pointer-events: none;
-      z-index: 9999;
-      transition: transform 0.08s ease;
-      transform: translate(-50%, -50%);
-      box-shadow: 0 0 6px rgba(198, 161, 91, 0.5);
+    /* ─── CONTAINER ─── */
+    .container { max-width: 1340px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 64px); }
+
+    /* ─── TYPOGRAPHY ─── */
+    .serif { font-family: 'Playfair Display', serif; }
+    .display { font-family: 'DM Serif Display', serif; }
+
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: .68rem; font-weight: 600; letter-spacing: 2.5px;
+      text-transform: uppercase; color: var(--gold-dark);
+      background: rgba(201,169,110,.12);
+      padding: 6px 18px; border-radius: 30px;
+      margin-bottom: 1.4rem;
+    }
+    .eyebrow::before {
+      content:''; width:20px; height:1px; background: var(--gold);
     }
 
-    .cursor-outline {
-      width: 44px;
-      height: 44px;
-      border: 1.8px solid rgba(198, 161, 91, 0.7);
-      border-radius: 50%;
-      position: fixed;
-      pointer-events: none;
-      z-index: 9998;
-      transition: transform 0.2s cubic-bezier(0.2, 0.9, 0.4, 1.1), width 0.2s, height 0.2s, background 0.2s;
-      transform: translate(-50%, -50%);
-      backdrop-filter: blur(1px);
-      background: rgba(198, 161, 91, 0.02);
+    h2.section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--ink);
+      letter-spacing: -0.02em;
     }
+    .gold { color: var(--gold); }
 
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: #ECE4D9; }
-    ::-webkit-scrollbar-thumb { background: #B48C48; border-radius: 8px; }
-
-    .container {
-      max-width: 1320px;
-      margin: 0 auto;
-      padding: 0 48px;
-    }
-
-    /* Responsive container padding */
-    @media (max-width: 992px) {
-      .container {
-        padding: 0 32px;
-      }
-    }
-    @media (max-width: 768px) {
-      .container {
-        padding: 0 24px;
-      }
-    }
-    @media (max-width: 576px) {
-      .container {
-        padding: 0 20px;
-      }
-    }
-
-    .btn-primary {
-      display: inline-block;
-      background: #1F2A38;
-      color: #FFFCF8;
-      font-weight: 500;
-      padding: 14px 40px;
-      border-radius: 0;
-      text-decoration: none;
-      letter-spacing: 1.2px;
-      transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-      border: 1px solid #1F2A38;
-      font-family: 'Inter', sans-serif;
-      font-size: 0.85rem;
-      text-transform: uppercase;
-      cursor: pointer;
-      position: relative;
-      z-index: 1;
-      overflow: hidden;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
-    }
-    .btn-primary::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(216,177,107,0.25), transparent);
-      transition: left 0.6s ease;
-    }
-    .btn-primary:hover::before { left: 100%; }
-    .btn-primary:hover {
-      background: transparent;
-      color: #1F2A38;
-      border-color: #C6A15B;
-      transform: translateY(-3px);
-      box-shadow: 0 12px 24px -12px rgba(0,0,0,0.2);
-    }
-    .btn-outline {
-      display: inline-block;
-      background: transparent;
-      color: #1F2A38;
-      font-weight: 500;
-      padding: 12px 34px;
-      border-radius: 0;
-      text-decoration: none;
-      border: 1px solid #9B7A4A;
-      transition: all 0.3s ease;
-      text-transform: uppercase;
-      font-size: 0.8rem;
-      letter-spacing: 0.8px;
-      cursor: pointer;
-    }
-    .btn-outline:hover {
-      background: #C6A15B;
-      color: #1E1A15;
-      border-color: #C6A15B;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 18px rgba(198,161,91,0.2);
-    }
-    @media (max-width: 576px) {
-      .btn-primary, .btn-outline {
-        padding: 10px 24px;
-        font-size: 0.75rem;
-      }
-    }
-
-    .section-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 3.4rem;
-      font-weight: 600;
-      letter-spacing: -0.01em;
-      margin-bottom: 1.2rem;
-      line-height: 1.2;
-      color: #131F2C;
-    }
-    @media (max-width: 992px) {
-      .section-title {
-        font-size: 3rem;
-      }
-    }
-    @media (max-width: 768px) {
-      .section-title {
-        font-size: 2.5rem;
-      }
-    }
-    @media (max-width: 576px) {
-      .section-title {
-        font-size: 2.2rem;
-      }
-    }
     .section-sub {
-      font-size: 1.05rem;
-      color: #4F5B66;
-      max-width: 700px;
-      margin: 0 auto 2.8rem auto;
-      line-height: 1.65;
-      font-weight: 400;
-    }
-    @media (max-width: 768px) {
-      .section-sub {
-        font-size: 0.95rem;
-        margin-bottom: 2rem;
-      }
-    }
-    .gold-accent {
-      color: #C6A15B;
-      font-weight: 600;
-      letter-spacing: -0.2px;
+      font-size: clamp(.9rem, 1.5vw, 1.05rem);
+      color: var(--text-muted);
+      max-width: 620px;
+      margin: 1rem auto 0;
+      line-height: 1.75;
+      font-weight: 300;
     }
 
-    /* Header - Premium glass morphism with mobile hamburger */
+    /* ─── BUTTONS ─── */
+    .btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: .78rem; font-weight: 600;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      text-decoration: none; border: none;
+      padding: 15px 36px; border-radius: 0;
+      cursor: pointer; position: relative; overflow: hidden;
+      transition: all .35s cubic-bezier(.2,.9,.4,1.1);
+    }
+    .btn::after {
+      content:''; position:absolute; inset:0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.15), transparent);
+      transform: translateX(-100%); transition: transform .5s ease;
+    }
+    .btn:hover::after { transform: translateX(100%); }
+
+    .btn-dark {
+      background: var(--ink); color: var(--cream);
+    }
+    .btn-dark:hover { background: var(--ink-mid); transform: translateY(-3px); box-shadow: 0 16px 32px -12px rgba(0,0,0,.3); }
+
+    .btn-gold {
+      background: var(--gold); color: var(--ink);
+    }
+    .btn-gold:hover { background: var(--gold-light); transform: translateY(-3px); box-shadow: 0 16px 32px -12px rgba(201,169,110,.4); }
+
+    .btn-ghost {
+      background: transparent; color: var(--ink);
+      border: 1.5px solid var(--gold-dark);
+    }
+    .btn-ghost:hover { background: var(--gold); border-color: var(--gold); color: var(--ink); transform: translateY(-2px); }
+
+    /* ─── DIVIDER ─── */
+    .divider {
+      width: 60px; height: 2px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      margin: 1.5rem 0;
+    }
+    .divider-center { margin: 1.5rem auto; }
+
+    /* ══════════════════════════════════════
+       HEADER
+    ══════════════════════════════════════ */
     header {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background: rgba(254, 250, 245, 0.94);
-      backdrop-filter: blur(14px);
-      z-index: 1000;
-      padding: 22px 0;
-      border-bottom: 1px solid rgba(198, 161, 91, 0.2);
-      transition: all 0.4s ease;
+      position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+      padding: 24px 0;
+      background: rgba(250,246,239,.92);
+      backdrop-filter: blur(20px) saturate(160%);
+      border-bottom: 1px solid var(--border);
+      transition: padding .4s ease, box-shadow .4s ease;
     }
     header.scrolled {
-      padding: 12px 0;
-      background: rgba(254, 250, 245, 0.98);
-      box-shadow: 0 12px 28px -12px rgba(0, 0, 0, 0.08);
+      padding: 14px 0;
+      box-shadow: 0 12px 40px -16px rgba(0,0,0,.1);
     }
-    .nav-flex {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+    .nav-wrap { display: flex; align-items: center; justify-content: space-between; }
+
     .logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2rem;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.3rem, 2.5vw, 1.8rem);
       font-weight: 700;
-      letter-spacing: 1px;
-      color: #1E2A32;
-      border-left: 4px solid #C6A15B;
-      padding-left: 18px;
-      transition: all 0.3s ease;
+      color: var(--ink);
+      letter-spacing: .5px;
+      border-left: 4px solid var(--gold);
+      padding-left: 16px;
+      line-height: 1.1;
     }
-    .logo span { color: #C6A15B; font-weight: 700; }
-    @media (max-width: 768px) {
-      .logo {
-        font-size: 1.5rem;
-        padding-left: 12px;
-      }
-    }
-    .menu-toggle {
-      display: none;
-      background: none;
-      border: none;
-      font-size: 1.8rem;
-      color: #1F2A38;
-      cursor: pointer;
-      transition: 0.3s;
-    }
+    .logo span { color: var(--gold); }
+
     .nav-links {
-      display: flex;
-      gap: 48px;
-      align-items: center;
+      display: flex; align-items: center; gap: clamp(24px, 3vw, 48px);
     }
     .nav-links a {
-      text-decoration: none;
-      font-weight: 500;
-      color: #2C3F4B;
-      transition: 0.25s;
-      font-size: 0.85rem;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-      cursor: pointer;
-      position: relative;
+      font-size: .78rem; font-weight: 500; letter-spacing: .8px;
+      text-transform: uppercase; color: var(--ink-soft);
+      text-decoration: none; position: relative;
+      transition: color .25s;
     }
     .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: -6px;
-      left: 0;
-      width: 0;
-      height: 1.5px;
-      background: #C6A15B;
-      transition: width 0.3s ease;
+      content:''; position:absolute; left:0; bottom:-5px;
+      width:0; height:1.5px; background:var(--gold);
+      transition: width .3s ease;
     }
-    .nav-links a:hover::after { width: 100%; }
-    .nav-links a:hover { color: #C6A15B; }
-    @media (max-width: 992px) {
-      .nav-links {
-        gap: 32px;
-      }
-      .nav-links a {
-        font-size: 0.8rem;
-      }
+    .nav-links a:hover { color: var(--gold-dark); }
+    .nav-links a:hover::after { width:100%; }
+
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 4px;
     }
-    @media (max-width: 768px) {
-      .menu-toggle {
-        display: block;
-      }
+    .hamburger span {
+      display: block; width: 26px; height: 2px;
+      background: var(--ink); border-radius: 4px;
+      transition: all .35s cubic-bezier(.2,.9,.4,1.1);
+    }
+    .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+
+    @media (max-width: 900px) {
+      .hamburger { display: flex; }
       .nav-links {
-        position: fixed;
-        top: 70px;
-        left: 0;
-        width: 100%;
-        background: rgba(254, 250, 245, 0.98);
-        backdrop-filter: blur(20px);
-        flex-direction: column;
-        gap: 24px;
-        padding: 40px 24px;
-        transform: translateY(-150%);
-        transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        position: fixed; top: 0; left: 0;
+        width: 100%; height: 100vh;
+        background: var(--white);
+        flex-direction: column; justify-content: center;
+        gap: 40px;
+        transform: translateX(100%);
+        transition: transform .45s cubic-bezier(.2,.9,.4,1.1);
         z-index: 999;
-        border-bottom: 1px solid rgba(198, 161, 91, 0.3);
-        box-shadow: 0 20px 30px -12px rgba(0,0,0,0.1);
+        border-left: 4px solid var(--gold);
       }
-      .nav-links.active {
-        transform: translateY(0);
-      }
-      .nav-links a {
-        font-size: 1rem;
-        padding: 8px 0;
-      }
-      .nav-links a::after {
-        bottom: 0;
-      }
+      .nav-links.open { transform: translateX(0); }
+      .nav-links a { font-size: 1rem; letter-spacing: 1.5px; }
     }
 
-    /* Hero Section - Preserve animation */
+    /* ══════════════════════════════════════
+       HERO
+    ══════════════════════════════════════ */
     .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      background: radial-gradient(circle at 10% 20%, rgba(245, 238, 226, 0.6), #FEFAF5), linear-gradient(135deg, #FEF9F0 0%, #FAF3E8 100%);
-      position: relative;
-      padding-top: 100px;
-      overflow: hidden;
+      min-height: 100vh; padding-top: 100px;
+      display: flex; align-items: center;
+      background: var(--cream);
+      position: relative; overflow: hidden;
     }
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: -30%;
-      right: -15%;
-      width: 70%;
-      height: 140%;
-      background: radial-gradient(circle, rgba(198,161,91,0.05) 0%, transparent 70%);
-      animation: slowDrift 22s infinite alternate;
+    .hero-bg-pattern {
+      position: absolute; inset: 0; pointer-events: none;
+      background-image:
+        radial-gradient(circle at 80% 20%, rgba(201,169,110,.08) 0%, transparent 50%),
+        radial-gradient(circle at 10% 80%, rgba(201,169,110,.06) 0%, transparent 40%);
     }
-    @keyframes slowDrift {
-      0% { transform: translate(0,0) rotate(0deg);}
-      100% { transform: translate(-35px, 25px) rotate(6deg);}
+    .hero-bg-lines {
+      position: absolute; inset: 0; pointer-events: none; overflow: hidden;
     }
-    .hero-grid {
+    .hero-bg-lines::before {
+      content:''; position:absolute;
+      top: -200px; right: -200px;
+      width: 700px; height: 700px;
+      border-radius: 50%;
+      border: 1px solid rgba(201,169,110,.12);
+      animation: rotateSlow 40s linear infinite;
+    }
+    .hero-bg-lines::after {
+      content:''; position:absolute;
+      top: -100px; right: -100px;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      border: 1px solid rgba(201,169,110,.08);
+      animation: rotateSlow 30s linear infinite reverse;
+    }
+    @keyframes rotateSlow { to { transform: rotate(360deg); } }
+
+    .hero-inner {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 70px;
+      gap: clamp(40px, 6vw, 90px);
       align-items: center;
+      position: relative; z-index: 1;
     }
-    @media (max-width: 992px) {
-      .hero-grid {
-        grid-template-columns: 1fr;
-        gap: 50px;
-        text-align: center;
-      }
-      .hero-desc {
-        margin-left: auto;
-        margin-right: auto;
-      }
-      .hero-stats {
-        justify-content: center;
-      }
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; text-align: center; }
+      .hero-eyebrow { justify-content: center; }
+      .hero-actions { justify-content: center; }
+      .hero-stats { justify-content: center; }
     }
-    .hero-badge {
-      display: inline-flex;
-      background: rgba(198, 161, 91, 0.18);
-      color: #A57C42;
-      font-weight: 600;
-      font-size: 0.7rem;
-      padding: 7px 18px;
-      letter-spacing: 1.8px;
-      text-transform: uppercase;
-      margin-bottom: 1.5rem;
-      border-radius: 30px;
-      backdrop-filter: blur(2px);
-    }
-    .hero-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 4.7rem;
-      font-weight: 700;
-      line-height: 1.1;
-      margin-bottom: 1.6rem;
-      color: #0F1A24;
-    }
-    @media (max-width: 992px) {
-      .hero-title {
-        font-size: 3.8rem;
-      }
-    }
-    @media (max-width: 768px) {
-      .hero-title {
-        font-size: 3rem;
-      }
-    }
-    @media (max-width: 576px) {
-      .hero-title {
-        font-size: 2.5rem;
-      }
-    }
-    .hero-desc {
-      font-size: 1.1rem;
-      color: #2F414F;
-      margin-bottom: 2.5rem;
-      line-height: 1.65;
-      max-width: 90%;
-    }
-    @media (max-width: 992px) {
-      .hero-desc {
-        max-width: 100%;
-      }
-    }
-    .hero-stats {
-      display: flex;
-      gap: 54px;
-      margin-top: 52px;
-      flex-wrap: wrap;
-    }
-    .stat-block .stat-number {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.4rem;
-      font-weight: 700;
-      color: #C6A15B;
-      transition: 0.2s;
-      display: inline-block;
-    }
-    .hero-image img {
-      width: 100%;
-      border-radius: 8px;
-      box-shadow: 0 35px 50px -20px rgba(0,0,0,0.25);
-      transition: 0.5s;
-    }
-    .hero-image img:hover { transform: scale(1.01); filter: brightness(1); }
 
-    /* Pillars - responsive grid */
+    .hero-label {
+      display: inline-flex; align-items: center; gap: 12px;
+      font-size: .68rem; font-weight: 600; letter-spacing: 2.5px;
+      text-transform: uppercase; color: var(--gold-dark);
+      margin-bottom: 1.6rem;
+    }
+    .hero-label-line { width: 32px; height: 1.5px; background: var(--gold); flex-shrink: 0; }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 6vw, 5.5rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+      margin-bottom: 1.8rem;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .hero-desc {
+      font-size: clamp(.95rem, 1.5vw, 1.1rem);
+      color: var(--text-muted);
+      max-width: 480px;
+      margin-bottom: 2.5rem;
+      line-height: 1.75;
+      font-weight: 300;
+    }
+    @media (max-width: 900px) { .hero-desc { margin-left: auto; margin-right: auto; } }
+
+    .hero-actions {
+      display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 3.5rem;
+    }
+
+    .hero-stats {
+      display: flex; gap: clamp(32px, 5vw, 56px); flex-wrap: wrap;
+      padding-top: 2rem;
+      border-top: 1px solid var(--cream-deep);
+    }
+    .stat-item .num {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      font-weight: 700; color: var(--gold);
+      line-height: 1;
+    }
+    .stat-item .lbl {
+      font-size: .65rem; font-weight: 600;
+      letter-spacing: 1.8px; text-transform: uppercase;
+      color: var(--text-light); margin-top: 4px;
+    }
+
+    /* Hero Image */
+    .hero-visual {
+      position: relative;
+    }
+    .hero-img-wrap {
+      position: relative; border-radius: 2px; overflow: hidden;
+      box-shadow: 0 40px 70px -20px rgba(0,0,0,.22), 0 0 0 1px rgba(201,169,110,.15);
+    }
+    .hero-img-wrap img {
+      width: 100%; display: block;
+      aspect-ratio: 4/5; object-fit: cover;
+      transition: transform .8s ease;
+    }
+    .hero-img-wrap:hover img { transform: scale(1.04); }
+    .hero-img-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(13,21,32,.05), transparent);
+    }
+
+    /* Floating badge */
+    .hero-badge-float {
+      position: absolute; bottom: -28px; left: -28px;
+      background: var(--ink);
+      color: var(--cream);
+      padding: 24px 28px;
+      box-shadow: 0 20px 40px -10px rgba(0,0,0,.3);
+      min-width: 180px;
+    }
+    .hero-badge-float .badge-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4rem; font-weight: 700; color: var(--gold);
+      line-height: 1;
+    }
+    .hero-badge-float .badge-lbl {
+      font-size: .65rem; letter-spacing: 1.8px;
+      text-transform: uppercase; color: var(--text-light);
+      margin-top: 4px;
+    }
+    @media (max-width: 900px) {
+      .hero-badge-float { bottom: -20px; left: 50%; transform: translateX(-50%); }
+    }
+    @media (max-width: 600px) {
+      .hero-badge-float { display: none; }
+    }
+
+    /* Gold frame corner accents */
+    .hero-img-wrap::before, .hero-img-wrap::after {
+      content:''; position:absolute; z-index:10;
+      width: 40px; height: 40px; pointer-events:none;
+    }
+    .hero-img-wrap::before {
+      top:16px; right:16px;
+      border-top: 2px solid var(--gold);
+      border-right: 2px solid var(--gold);
+    }
+    .hero-img-wrap::after {
+      bottom:16px; left:16px;
+      border-bottom: 2px solid var(--gold);
+      border-left: 2px solid var(--gold);
+    }
+
+    /* ══════════════════════════════════════
+       TRUST STRIP
+    ══════════════════════════════════════ */
+    .trust-strip {
+      background: var(--ink);
+      padding: 28px 0; overflow: hidden;
+      border-top: 1px solid rgba(201,169,110,.2);
+      border-bottom: 1px solid rgba(201,169,110,.2);
+    }
+    .trust-track {
+      display: flex; gap: 60px;
+      width: max-content;
+      animation: scrollTrack 25s linear infinite;
+    }
+    .trust-track:hover { animation-play-state: paused; }
+    @keyframes scrollTrack { to { transform: translateX(-50%); } }
+    .trust-track img {
+      height: 32px; filter: brightness(0) invert(1);
+      opacity: .4; transition: opacity .3s;
+      flex-shrink: 0;
+    }
+    .trust-track img:hover { opacity: .8; }
+    @media (max-width: 600px) {
+      .trust-track img { height: 24px; }
+      .trust-track { gap: 40px; }
+    }
+
+    /* ══════════════════════════════════════
+       PILLARS
+    ══════════════════════════════════════ */
     .pillars {
-      padding: 120px 0;
-      background: #FFFFFF;
+      padding: clamp(80px, 10vw, 130px) 0;
+      background: var(--white);
     }
-    @media (max-width: 768px) {
-      .pillars {
-        padding: 80px 0;
-      }
-    }
+    .pillars-head { text-align: center; margin-bottom: clamp(40px, 6vw, 70px); }
+
     .pillars-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 55px;
-      margin-top: 40px;
+      gap: clamp(20px, 3vw, 40px);
     }
-    @media (max-width: 992px) {
-      .pillars-grid {
-        gap: 35px;
-      }
-    }
-    @media (max-width: 768px) {
-      .pillars-grid {
-        grid-template-columns: 1fr;
-        gap: 40px;
-      }
-    }
+    @media (max-width: 900px) { .pillars-grid { grid-template-columns: 1fr; max-width: 500px; margin: 0 auto; } }
+    @media (min-width: 600px) and (max-width: 900px) { .pillars-grid { grid-template-columns: repeat(2, 1fr); max-width: 100%; } }
+
     .pillar-card {
-      background: #FFFDF9;
-      padding: 48px 36px;
-      border-bottom: 3px solid #E9DFD1;
-      transition: all 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-      text-align: center;
-      cursor: pointer;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+      background: var(--cream);
+      padding: clamp(32px, 4vw, 52px) clamp(24px, 3vw, 40px);
+      position: relative; overflow: hidden;
+      transition: transform .4s cubic-bezier(.2,.9,.4,1.1), box-shadow .4s;
+      cursor: default;
     }
+    .pillar-card::before {
+      content:''; position:absolute; bottom:0; left:0;
+      width:0; height:3px; background: var(--gold);
+      transition: width .5s cubic-bezier(.2,.9,.4,1.1);
+    }
+    .pillar-card:hover::before { width:100%; }
     .pillar-card:hover {
-      border-bottom-color: #C6A15B;
-      transform: translateY(-12px);
-      box-shadow: 0 28px 40px -18px rgba(0,0,0,0.12);
+      transform: translateY(-10px);
+      box-shadow: 0 30px 50px -20px rgba(0,0,0,.12), 0 0 0 1px rgba(201,169,110,.15);
     }
+    .pillar-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 4rem; font-weight: 700;
+      color: rgba(201,169,110,.12);
+      line-height: 1; margin-bottom: 1.5rem;
+      transition: color .3s;
+    }
+    .pillar-card:hover .pillar-number { color: rgba(201,169,110,.2); }
     .pillar-icon {
-      font-size: 3rem;
-      color: #C6A15B;
-      margin-bottom: 28px;
-      transition: transform 0.4s ease;
+      font-size: 1.8rem; color: var(--gold);
+      margin-bottom: 1.4rem;
+      transition: transform .4s;
     }
-    .pillar-card:hover .pillar-icon { transform: scale(1.08) rotate(2deg);}
+    .pillar-card:hover .pillar-icon { transform: scale(1.15) rotate(5deg); }
+    .pillar-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.35rem; font-weight: 600;
+      margin-bottom: .8rem; color: var(--ink);
+    }
+    .pillar-body {
+      font-size: .9rem; color: var(--text-muted);
+      line-height: 1.7; font-weight: 300;
+    }
 
-    /* Practice area - responsive flex */
+    /* ══════════════════════════════════════
+       SPLIT SECTION — Practice Areas
+    ══════════════════════════════════════ */
     .practice {
-      background: #FCF8F2;
-      padding: 120px 0;
+      padding: clamp(80px, 10vw, 130px) 0;
+      background: var(--cream-warm);
     }
-    @media (max-width: 768px) {
-      .practice {
-        padding: 80px 0;
-      }
-    }
-    .practice-flex {
-      display: flex;
-      gap: 80px;
+    .practice-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(40px, 7vw, 100px);
       align-items: center;
-      flex-wrap: wrap;
     }
-    @media (max-width: 992px) {
-      .practice-flex {
-        gap: 50px;
-      }
+    @media (max-width: 900px) { .practice-inner { grid-template-columns: 1fr; } }
+
+    .practice-img-wrap {
+      position: relative;
     }
-    @media (max-width: 768px) {
-      .practice-flex {
-        flex-direction: column;
-      }
+    .practice-img-frame {
+      position: relative;
+      border-radius: 2px; overflow: hidden;
+      box-shadow: 0 30px 60px -20px rgba(0,0,0,.18);
     }
+    .practice-img-frame img {
+      width: 100%; display: block;
+      aspect-ratio: 3/4; object-fit: cover;
+    }
+    .practice-img-frame::before {
+      content:''; position:absolute;
+      top:-16px; right:-16px;
+      width:60%; height:60%;
+      border-top: 2px solid var(--gold);
+      border-right: 2px solid var(--gold);
+      z-index:2; pointer-events:none;
+    }
+    .practice-img-frame::after {
+      content:''; position:absolute;
+      bottom:-16px; left:-16px;
+      width:60%; height:60%;
+      border-bottom: 2px solid var(--gold);
+      border-left: 2px solid var(--gold);
+      z-index:2; pointer-events:none;
+    }
+    .practice-years-badge {
+      position: absolute; top: 40px; right: -24px;
+      background: var(--gold);
+      color: var(--ink);
+      padding: 20px 22px;
+      text-align: center;
+      box-shadow: 0 16px 32px -8px rgba(201,169,110,.4);
+      z-index: 3;
+    }
+    .practice-years-badge .big {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem; font-weight: 700; line-height: 1;
+    }
+    .practice-years-badge .sm {
+      font-size: .6rem; font-weight: 600; letter-spacing: 1.5px;
+      text-transform: uppercase; margin-top: 3px;
+    }
+    @media (max-width: 600px) { .practice-years-badge { display:none; } }
+
+    .practice-list { list-style: none; margin: 2rem 0; }
     .practice-list li {
-      margin-bottom: 24px;
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      font-size: 1.05rem;
-      font-weight: 500;
-      border-bottom: 1px solid #E8DCCE;
-      padding-bottom: 14px;
-      cursor: pointer;
-      transition: 0.3s;
-      color: #1F2F3C;
+      display: flex; align-items: center; gap: 16px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--cream-deep);
+      font-size: .95rem; font-weight: 500; color: var(--ink-soft);
+      cursor: default; transition: all .3s;
     }
-    .practice-list li:hover {
-      transform: translateX(14px);
-      border-bottom-color: #C6A15B;
-      color: #C6A15B;
+    .practice-list li:last-child { border-bottom: none; }
+    .practice-list li:hover { color: var(--gold-dark); transform: translateX(8px); border-bottom-color: rgba(201,169,110,.35); }
+    .practice-list li .icon {
+      width: 40px; height: 40px; flex-shrink: 0;
+      background: rgba(201,169,110,.12);
+      display: flex; align-items:center; justify-content:center;
+      border-radius: 2px; color: var(--gold-dark);
+      font-size: .9rem; transition: background .3s;
     }
-    .practice-list i { color: #C6A15B; font-size: 1.4rem; width: 32px; }
-    .practice-image img {
-      width: 100%;
-      border-radius: 16px;
-      box-shadow: 0 20px 30px -12px rgba(0,0,0,0.1);
-      transition: 0.5s;
+    .practice-list li:hover .icon { background: rgba(201,169,110,.22); }
+
+    /* ══════════════════════════════════════
+       NUMBERS SECTION
+    ══════════════════════════════════════ */
+    .numbers-section {
+      padding: clamp(70px, 8vw, 100px) 0;
+      background: var(--ink);
+      position: relative; overflow: hidden;
+    }
+    .numbers-section::before {
+      content:''; position:absolute;
+      top:-50%; left:-20%;
+      width:140%; height:200%;
+      background: radial-gradient(circle at 70% 50%, rgba(201,169,110,.06) 0%, transparent 60%);
+      pointer-events:none;
+    }
+    .numbers-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+      position: relative; z-index:1;
+    }
+    @media (max-width: 900px) { .numbers-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 500px) { .numbers-grid { grid-template-columns: 1fr; } }
+
+    .number-cell {
+      padding: clamp(32px, 4vw, 52px) clamp(24px, 3vw, 40px);
+      text-align: center;
+      background: rgba(255,255,255,.02);
+      border: 1px solid rgba(201,169,110,.08);
+      transition: background .3s;
+    }
+    .number-cell:hover { background: rgba(201,169,110,.04); }
+    .number-cell .big-num {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 5vw, 4rem);
+      font-weight: 700; color: var(--gold);
+      line-height: 1; margin-bottom: .5rem;
+    }
+    .number-cell .num-lbl {
+      font-size: .7rem; font-weight: 600; letter-spacing: 2px;
+      text-transform: uppercase; color: rgba(201,169,110,.5);
+    }
+    .number-cell .num-desc {
+      font-size: .82rem; color: rgba(255,255,255,.35);
+      margin-top: .5rem; font-weight: 300;
     }
 
-    /* Testimonials - responsive grid */
+    /* ══════════════════════════════════════
+       TESTIMONIALS
+    ══════════════════════════════════════ */
     .testimonials {
-      padding: 120px 0;
-      background: #FFFFFF;
+      padding: clamp(80px, 10vw, 130px) 0;
+      background: var(--white);
     }
-    @media (max-width: 768px) {
-      .testimonials {
-        padding: 80px 0;
-      }
-    }
-    .testimonial-grid {
+    .testimonials-head { text-align: center; margin-bottom: clamp(40px, 6vw, 70px); }
+    .testimonials-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 50px;
-      margin-top: 55px;
+      gap: clamp(20px, 3vw, 40px);
     }
-    @media (max-width: 768px) {
-      .testimonial-grid {
-        grid-template-columns: 1fr;
-        gap: 35px;
-      }
-    }
-    .testimonial-card {
-      background: #FEFBF7;
-      padding: 48px 48px;
-      border-left: 6px solid #C6A15B;
-      transition: all 0.4s;
-      cursor: pointer;
-      box-shadow: 0 8px 18px rgba(0,0,0,0.02);
-    }
-    .testimonial-card:hover {
-      transform: translateX(8px) translateY(-6px);
-      box-shadow: 0 24px 36px -16px rgba(0,0,0,0.1);
-    }
-    @media (max-width: 576px) {
-      .testimonial-card {
-        padding: 32px 28px;
-      }
-    }
-    .client-avatar {
-      width: 52px;
-      height: 52px;
-      background: linear-gradient(135deg, #E8DDCF, #DBCEBE);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.4rem;
-      color: #A57C42;
-    }
+    @media (max-width: 768px) { .testimonials-grid { grid-template-columns: 1fr; } }
 
-    /* Logo slider - responsive */
-    .logo-slider-wrapper {
-      overflow: hidden;
-      width: 100%;
-      margin: 40px 0;
+    .tcard {
+      background: var(--cream);
+      padding: clamp(28px, 4vw, 50px);
+      position: relative; overflow: hidden;
+      border-left: 3px solid var(--gold);
+      transition: transform .4s cubic-bezier(.2,.9,.4,1.1), box-shadow .4s;
     }
-    #logoSlider {
-      display: flex;
-      gap: 60px;
-      width: max-content;
-      animation: scrollLogos 22s linear infinite;
+    .tcard:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 28px 50px -20px rgba(0,0,0,.1);
     }
-    @keyframes scrollLogos {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
+    .tcard-quote {
+      font-family: 'Playfair Display', serif;
+      font-size: 4rem; line-height: 1;
+      color: rgba(201,169,110,.2);
+      margin-bottom: -.5rem;
+      position: absolute; top: 20px; right: 28px;
     }
-    .logo-slider-wrapper img {
-      height: 40px;
-      filter: grayscale(0.3);
-      opacity: 0.7;
-      transition: 0.3s;
+    .tcard-text {
+      font-size: clamp(.9rem, 1.3vw, 1rem);
+      color: var(--ink-soft); line-height: 1.8;
+      font-style: italic; font-weight: 300;
+      margin-bottom: 1.8rem; position: relative; z-index:1;
     }
-    @media (max-width: 768px) {
-      #logoSlider { gap: 40px; }
-      .logo-slider-wrapper img { height: 32px; }
+    .tcard-author {
+      display: flex; align-items: center; gap: 14px;
     }
-    @media (max-width: 576px) {
-      #logoSlider { gap: 30px; }
-      .logo-slider-wrapper img { height: 28px; }
+    .tcard-avatar {
+      width: 48px; height: 48px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--cream-deep), var(--cream-warm));
+      border: 2px solid var(--gold);
+      display: flex; align-items:center; justify-content:center;
+      color: var(--gold-dark); font-size: 1rem;
+      flex-shrink: 0;
     }
+    .tcard-name {
+      font-family: 'Playfair Display', serif;
+      font-size: .95rem; font-weight: 600; color: var(--ink);
+    }
+    .tcard-role { font-size: .72rem; color: var(--text-light); letter-spacing: .5px; margin-top: 2px; }
 
-    /* CTA */
-    .cta-justice {
-      background: #141F2A;
-      padding: 100px 0;
+    /* Stars */
+    .tcard-stars { color: var(--gold); font-size: .75rem; margin-bottom: 1rem; letter-spacing: 2px; }
+
+    /* ══════════════════════════════════════
+       CTA
+    ══════════════════════════════════════ */
+    .cta-section {
+      padding: clamp(80px, 10vw, 130px) 0;
+      background: var(--cream-warm);
       text-align: center;
-      position: relative;
-      background-image: radial-gradient(circle at 20% 40%, rgba(198,161,91,0.08) 1.5%, transparent 2%);
-      background-size: 28px 28px;
+      position: relative; overflow: hidden;
     }
-    @media (max-width: 768px) {
-      .cta-justice {
-        padding: 70px 0;
-      }
+    .cta-section::before {
+      content:''; position:absolute; inset:0; pointer-events:none;
+      background:
+        radial-gradient(circle at 20% 50%, rgba(201,169,110,.06) 0%, transparent 50%),
+        radial-gradient(circle at 80% 50%, rgba(201,169,110,.04) 0%, transparent 50%);
     }
-    .cta-justice h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 3.2rem;
-      color: #FEF6E8;
-      margin-bottom: 18px;
+    .cta-inner { position: relative; z-index:1; }
+    .cta-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      font-weight: 700; line-height: 1.1;
+      color: var(--ink); margin-bottom: 1.2rem;
+      letter-spacing: -0.02em;
     }
-    @media (max-width: 768px) {
-      .cta-justice h2 {
-        font-size: 2.5rem;
-      }
+    .cta-section p { font-size: 1rem; color: var(--text-muted); max-width: 520px; margin: 0 auto 2.5rem; line-height: 1.75; font-weight: 300; }
+    .cta-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .cta-note {
+      margin-top: 2rem;
+      font-size: .7rem; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--text-light);
     }
-    @media (max-width: 576px) {
-      .cta-justice h2 {
-        font-size: 2rem;
-      }
-    }
+    .cta-note span { color: var(--gold); }
 
-    /* Footer - responsive grid */
+    /* ══════════════════════════════════════
+       FOOTER
+    ══════════════════════════════════════ */
     footer {
-      background: #0E151D;
-      color: #BFC9D4;
-      padding: 70px 0 40px;
-      border-top: 1px solid rgba(198,161,91,0.15);
+      background: var(--ink);
+      padding: clamp(60px, 8vw, 100px) 0 40px;
+      border-top: 1px solid rgba(201,169,110,.15);
     }
     .footer-grid {
       display: grid;
-      grid-template-columns: 1.7fr 1fr 1fr 1.2fr;
-      gap: 50px;
+      grid-template-columns: 1.8fr 1fr 1fr 1.4fr;
+      gap: clamp(30px, 5vw, 60px);
       margin-bottom: 50px;
     }
-    @media (max-width: 992px) {
-      .footer-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 40px;
-      }
-    }
-    @media (max-width: 576px) {
-      .footer-grid {
-        grid-template-columns: 1fr;
-        text-align: center;
-        gap: 35px;
-      }
-    }
+    @media (max-width: 900px) { .footer-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 500px) { .footer-grid { grid-template-columns: 1fr; text-align: center; } }
+
     .footer-logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2rem;
-      font-weight: 700;
-      color: #EADDBD;
-      margin-bottom: 20px;
-      display: inline-block;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem; font-weight: 700;
+      color: var(--cream); border-left: 4px solid var(--gold);
+      padding-left: 16px; margin-bottom: 1.2rem; display: inline-block;
     }
-    .copyright {
-      text-align: center;
-      border-top: 1px solid #232E3A;
-      padding-top: 35px;
-      font-size: 0.75rem;
+    .footer-logo span { color: var(--gold); }
+    .footer-desc { font-size: .85rem; color: rgba(255,255,255,.3); line-height: 1.75; font-weight: 300; margin-bottom: 1.5rem; }
+    .footer-socials { display: flex; gap: 16px; }
+    @media (max-width: 500px) { .footer-socials { justify-content: center; } }
+    .footer-socials a {
+      width: 38px; height: 38px;
+      border: 1px solid rgba(201,169,110,.25);
+      display: flex; align-items:center; justify-content:center;
+      color: rgba(201,169,110,.5);
+      font-size: .85rem; border-radius: 2px;
+      transition: all .3s; text-decoration: none;
     }
+    .footer-socials a:hover { border-color: var(--gold); color: var(--gold); background: rgba(201,169,110,.08); }
+
+    .footer-col h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: .85rem; font-weight: 600;
+      color: var(--gold); letter-spacing: 1.5px;
+      text-transform: uppercase; margin-bottom: 1.4rem;
+    }
+    .footer-col a {
+      display: block; text-decoration: none;
+      font-size: .82rem; color: rgba(255,255,255,.35);
+      margin-bottom: 10px; transition: color .25s;
+    }
+    .footer-col a:hover { color: var(--gold-light); }
+    .footer-col .contact-item {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: .82rem; color: rgba(255,255,255,.35); margin-bottom: 12px;
+    }
+    @media (max-width: 500px) { .footer-col .contact-item { justify-content: center; } }
+    .footer-col .contact-item i { color: var(--gold); margin-top: 3px; }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,.06);
+      padding-top: 30px;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+    }
+    .footer-bottom p { font-size: .72rem; color: rgba(255,255,255,.2); }
+    .footer-bottom .footer-badge {
+      font-size: .65rem; letter-spacing: 1.5px; text-transform: uppercase;
+      color: rgba(201,169,110,.4); display: flex; align-items:center; gap: 8px;
+    }
+    .footer-badge::before { content:''; width:20px; height:1px; background: rgba(201,169,110,.3); }
+
+    /* ─── ANIMATIONS ─── */
+    .fade-up {
+      opacity: 0; transform: translateY(32px);
+      transition: opacity .7s ease, transform .7s cubic-bezier(.2,.9,.4,1.1);
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    .fade-left {
+      opacity: 0; transform: translateX(-32px);
+      transition: opacity .7s ease, transform .7s cubic-bezier(.2,.9,.4,1.1);
+    }
+    .fade-left.visible { opacity: 1; transform: translateX(0); }
+    .fade-right {
+      opacity: 0; transform: translateX(32px);
+      transition: opacity .7s ease, transform .7s cubic-bezier(.2,.9,.4,1.1);
+    }
+    .fade-right.visible { opacity: 1; transform: translateX(0); }
+    [data-delay="1"] { transition-delay: .1s; }
+    [data-delay="2"] { transition-delay: .2s; }
+    [data-delay="3"] { transition-delay: .3s; }
+    [data-delay="4"] { transition-delay: .4s; }
+
+    /* Selection */
+    ::selection { background: rgba(201,169,110,.2); color: var(--ink); }
   </style>
 </head>
 <body>
 
-<div class="cursor-dot"></div>
-<div class="cursor-outline"></div>
+<!-- Custom Cursor -->
+<div class="c-dot" id="cDot"></div>
+<div class="c-ring" id="cRing"></div>
 
-<header>
-  <div class="container nav-flex">
+<!-- ══════════ HEADER ══════════ -->
+<header id="header">
+  <div class="container nav-wrap">
     <div class="logo">JUSTICE <span>CONSULTING</span></div>
-    <button class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></button>
-    <div class="nav-links" id="navLinks">
-      <a href="#">Home</a>
-      <a href="#">Expertise</a>
-      <a href="#">Advocacy</a>
-      <a href="#">Insights</a>
-      <a href="#" class="btn-outline" style="padding: 6px 24px;">Private Counsel</a>
-    </div>
+
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="nav-links" id="navLinks">
+      <a href="#hero">Home</a>
+      <a href="#practice">Expertise</a>
+      <a href="#pillars">Advocacy</a>
+      <a href="#testimonials">Insights</a>
+      <a href="#cta" class="btn btn-ghost" style="padding: 9px 24px;">Private Counsel</a>
+    </nav>
   </div>
 </header>
 
-<section class="hero">
-  <div class="container hero-grid">
-    <div>
-      <div class="hero-badge"><i class="fas fa-scale-balanced" style="margin-right: 8px;"></i> Est. 1998 · Sovereign Counsel</div>
-      <h1 class="hero-title">Where justice meets<br>unassailable foresight.</h1>
-      <p class="hero-desc">Exclusive strategic counsel to institutions, global enterprises, and sovereign entities. Precision, discretion, and relentless advocacy.</p>
-      <div style="display: flex; gap: 16px; flex-wrap: wrap;">
-        <a href="#" class="btn-primary">Secure consultation →</a>
-        <a href="#" class="btn-outline">Our heritage</a>
-      </div>
-      <div class="hero-stats">
-        <div class="stat-block"><span class="stat-number" data-target="97">0</span>%<br><span style="font-size:0.7rem;">SUCCESS RATE</span></div>
-        <div class="stat-block"><span class="stat-number" data-target="18.4">0</span>B+<br><span style="font-size:0.7rem;">DISPUTES RESOLVED</span></div>
-        <div class="stat-block"><span class="stat-number" data-target="52">0</span>+<br><span style="font-size:0.7rem;">GLOBAL HUBS</span></div>
-      </div>
-    </div>
-    <div class="hero-image">
-      <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=1600&q=80" alt="Prestigious law library">
-    </div>
-  </div>
-</section>
-
-<section class="pillars">
+<!-- ══════════ HERO ══════════ -->
+<section class="hero" id="hero">
+  <div class="hero-bg-pattern"></div>
+  <div class="hero-bg-lines"></div>
   <div class="container">
-    <div style="text-align: center;" data-aos="fade-up">
-      <span class="hero-badge" style="background:#E8DDD0;">Core Tenets</span>
-      <h2 class="section-title">Built on <span class="gold-accent">integrity & brilliance</span></h2>
-      <p class="section-sub">Our philosophy fuses uncompromising ethics with visionary strategy. Each engagement reflects the highest standard of justice.</p>
-    </div>
-    <div class="pillars-grid">
-      <div class="pillar-card" data-aos="fade-up" data-aos-delay="100">
-        <div class="pillar-icon"><i class="fas fa-gavel"></i></div>
-        <h3>Unwavering Advocacy</h3>
-        <p>We defend your interests with masterful precision, ensuring each argument is irrefutable and outcome-focused.</p>
-      </div>
-      <div class="pillar-card" data-aos="fade-up" data-aos-delay="200">
-        <div class="pillar-icon"><i class="fas fa-crown"></i></div>
-        <h3>Absolute Discretion</h3>
-        <p>Confidentiality is our sacred covenant. Your most sensitive matters are guarded with elite protocols.</p>
-      </div>
-      <div class="pillar-card" data-aos="fade-up" data-aos-delay="300">
-        <div class="pillar-icon"><i class="fas fa-chart-line"></i></div>
-        <h3>Strategic Vision</h3>
-        <p>Beyond litigation, we architect enduring solutions that fortify legacy, reputation, and influence.</p>
-      </div>
-    </div>
-  </div>
-</section>
+    <div class="hero-inner">
 
-<section class="practice">
-  <div class="container practice-flex">
-    <div class="practice-content" data-aos="fade-right">
-      <span class="hero-badge" style="background:#E2D5C6;">Areas of mastery</span>
-      <h2 class="section-title" style="font-size: 3rem;">Counsel that <span class="gold-accent">commands authority</span></h2>
-      <p style="margin: 1rem 0 0.5rem; font-size: 1rem; color:#415A6B;">We navigate complex legal frontiers with decisive clarity and unmatched sophistication.</p>
-      <ul class="practice-list">
-        <li><i class="fas fa-building"></i> Corporate & Institutional Litigation</li>
-        <li><i class="fas fa-globe-americas"></i> International Arbitration & Sovereign Disputes</li>
-        <li><i class="fas fa-shield-alt"></i> White-Collar Defense & Strategic Investigations</li>
-        <li><i class="fas fa-balance-scale"></i> Regulatory Governance & Policy Architecture</li>
-      </ul>
-      <a href="#" class="btn-primary" style="margin-top:32px; display:inline-block; background:#C6A15B; border:1px solid #C6A15B; color:#141F2A;">Explore full capabilities →</a>
-    </div>
-    <div class="practice-image" data-aos="fade-left">
-      <img src="https://images.unsplash.com/photo-1505664194779-8beaceb93744?auto=format&fit=crop&w=800&q=80" alt="Boardroom counsel">
-    </div>
-  </div>
-</section>
-
-<section class="testimonials">
-  <div class="container">
-    <div style="text-align: center;" data-aos="fade-up">
-      <span class="hero-badge">Endorsements</span>
-      <h2 class="section-title">Trusted by <span class="gold-accent">global leaders</span></h2>
-      <p class="section-sub">The reflections of those who have experienced our strategic depth and unwavering representation.</p>
-    </div>
-    <div class="testimonial-grid">
-      <div class="testimonial-card" data-aos="fade-right" data-aos-delay="100">
-        <div class="testimonial-text">“Justice Consulting delivered a landmark victory in a multi-jurisdictional dispute that redefined precedent. Their analytical rigor and poise under pressure are unmatched.”</div>
-        <div class="client" style="display:flex; align-items:center; gap:16px; margin-top:24px;">
-          <div class="client-avatar"><i class="fas fa-user-tie"></i></div>
-          <div><strong>Isabelle R. Laurent</strong><br><span style="font-size:0.7rem;">General Counsel, Meridian Group</span></div>
+      <!-- LEFT -->
+      <div class="hero-content fade-up visible">
+        <div class="hero-label">
+          <span class="hero-label-line"></span>
+          Est. 1998 · Sovereign Counsel
+        </div>
+        <h1 class="hero-title">Where <em>justice</em> meets unassailable foresight.</h1>
+        <p class="hero-desc">Exclusive strategic counsel to institutions, global enterprises, and sovereign entities. Precision, discretion, and relentless advocacy at the highest level.</p>
+        <div class="hero-actions">
+          <a href="#cta" class="btn btn-dark">Secure Consultation <i class="fas fa-arrow-right"></i></a>
+          <a href="#practice" class="btn btn-ghost">Our Heritage</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat-item">
+            <div class="num"><span class="counter" data-target="97">0</span>%</div>
+            <div class="lbl">Success Rate</div>
+          </div>
+          <div class="stat-item">
+            <div class="num">$<span class="counter" data-target="18">0</span>B+</div>
+            <div class="lbl">Disputes Resolved</div>
+          </div>
+          <div class="stat-item">
+            <div class="num"><span class="counter" data-target="52">0</span>+</div>
+            <div class="lbl">Global Hubs</div>
+          </div>
         </div>
       </div>
-      <div class="testimonial-card" data-aos="fade-left" data-aos-delay="200">
-        <div class="testimonial-text">“When reputation and regulatory exposure were paramount, Justice Consulting crafted a defense that not only prevailed but fortified our global standing.”</div>
-        <div class="client" style="display:flex; align-items:center; gap:16px; margin-top:24px;">
-          <div class="client-avatar"><i class="fas fa-chart-line"></i></div>
-          <div><strong>Alexander T. Vance</strong><br><span style="font-size:0.7rem;">Chairman, Vance Holdings</span></div>
+
+      <!-- RIGHT -->
+      <div class="hero-visual fade-right visible" style="transition-delay:.2s">
+        <div class="hero-img-wrap">
+          <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=900&q=85" alt="Prestigious law library">
+          <div class="hero-img-overlay"></div>
+        </div>
+        <div class="hero-badge-float">
+          <div class="badge-num">26+</div>
+          <div class="badge-lbl">Years of Excellence</div>
         </div>
       </div>
+
     </div>
   </div>
 </section>
 
-<div class="container">
-  <div style="text-align:center; margin-bottom:20px;">
-    <span style="font-size:0.8rem; letter-spacing:1px; color:#888;">TRUSTED BY LEADING ORGANIZATIONS</span>
-  </div>
-  <div class="logo-slider-wrapper">
-    <div id="logoSlider">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" style="height:40px;">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" style="height:40px;">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" style="height:40px;">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" style="height:40px;">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" style="height:40px;">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" style="height:40px;">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" style="height:40px;">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" style="height:40px;">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" style="height:40px;">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" style="height:40px;">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" style="height:40px;">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" style="height:40px;">
-    </div>
+<!-- ══════════ TRUST STRIP ══════════ -->
+<div class="trust-strip">
+  <div class="trust-track" id="trustTrack">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Microsoft">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" alt="IBM">
+    <!-- duplicate for seamless loop -->
+    <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Microsoft">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" alt="IBM">
   </div>
 </div>
 
-<section class="cta-justice">
-  <div class="container" data-aos="zoom-in">
-    <h2>Seek counsel of the highest order.</h2>
-    <p style="color:#C7D2E0; max-width: 550px; margin: 0 auto 20px; font-size: 1rem;">Your legacy, reputation, and future require uncompromising representation.</p>
-    <a href="#" class="btn-primary">Arrange confidential meeting →</a>
-    <p style="margin-top: 36px; font-size: 0.7rem; letter-spacing: 1.4px; color: #B2C0D1;">⚖️ Privileged & protected · 24h priority response</p>
+<!-- ══════════ PILLARS ══════════ -->
+<section class="pillars" id="pillars">
+  <div class="container">
+    <div class="pillars-head fade-up">
+      <div class="eyebrow"><i class="fas fa-scale-balanced"></i> Core Tenets</div>
+      <h2 class="section-title">Built on <span class="gold">integrity</span><br>& brilliance</h2>
+      <div class="divider divider-center"></div>
+      <p class="section-sub">Our philosophy fuses uncompromising ethics with visionary strategy. Each engagement reflects the highest standard of justice.</p>
+    </div>
+    <div class="pillars-grid">
+      <div class="pillar-card fade-up" data-delay="1">
+        <div class="pillar-number">01</div>
+        <div class="pillar-icon"><i class="fas fa-gavel"></i></div>
+        <h3 class="pillar-title">Unwavering Advocacy</h3>
+        <p class="pillar-body">We defend your interests with masterful precision, ensuring each argument is irrefutable and every outcome is strategically engineered.</p>
+      </div>
+      <div class="pillar-card fade-up" data-delay="2">
+        <div class="pillar-number">02</div>
+        <div class="pillar-icon"><i class="fas fa-crown"></i></div>
+        <h3 class="pillar-title">Absolute Discretion</h3>
+        <p class="pillar-body">Confidentiality is our sacred covenant. Your most sensitive matters are guarded under elite protocols and ironclad privilege.</p>
+      </div>
+      <div class="pillar-card fade-up" data-delay="3">
+        <div class="pillar-number">03</div>
+        <div class="pillar-icon"><i class="fas fa-chart-line"></i></div>
+        <h3 class="pillar-title">Strategic Vision</h3>
+        <p class="pillar-body">Beyond litigation, we architect enduring solutions that fortify legacy, reputation, and long-term institutional influence.</p>
+      </div>
+    </div>
   </div>
 </section>
 
+<!-- ══════════ PRACTICE AREAS ══════════ -->
+<section class="practice" id="practice">
+  <div class="container">
+    <div class="practice-inner">
+
+      <!-- IMAGE -->
+      <div class="practice-img-wrap fade-left">
+        <div class="practice-img-frame">
+          <img src="https://images.unsplash.com/photo-1505664194779-8beaceb93744?auto=format&fit=crop&w=700&q=85" alt="Boardroom counsel">
+        </div>
+        <div class="practice-years-badge">
+          <div class="big">26</div>
+          <div class="sm">Years<br>Mastery</div>
+        </div>
+      </div>
+
+      <!-- CONTENT -->
+      <div class="practice-content fade-right">
+        <div class="eyebrow"><i class="fas fa-briefcase"></i> Areas of Mastery</div>
+        <h2 class="section-title" style="font-size: clamp(2rem,4vw,3.2rem);">Counsel that <span class="gold">commands authority</span></h2>
+        <div class="divider"></div>
+        <p style="font-size:.95rem; color:var(--text-muted); line-height:1.75; font-weight:300; margin-bottom:.5rem;">We navigate the most complex legal frontiers with decisive clarity and unmatched institutional sophistication.</p>
+        <ul class="practice-list">
+          <li>
+            <div class="icon"><i class="fas fa-building"></i></div>
+            Corporate & Institutional Litigation
+          </li>
+          <li>
+            <div class="icon"><i class="fas fa-globe-americas"></i></div>
+            International Arbitration & Sovereign Disputes
+          </li>
+          <li>
+            <div class="icon"><i class="fas fa-shield-alt"></i></div>
+            White-Collar Defense & Strategic Investigations
+          </li>
+          <li>
+            <div class="icon"><i class="fas fa-balance-scale"></i></div>
+            Regulatory Governance & Policy Architecture
+          </li>
+          <li>
+            <div class="icon"><i class="fas fa-handshake"></i></div>
+            Mergers, Acquisitions & Cross-Border Transactions
+          </li>
+        </ul>
+        <a href="#cta" class="btn btn-gold">Explore Full Capabilities <i class="fas fa-arrow-right"></i></a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ NUMBERS ══════════ -->
+<section class="numbers-section">
+  <div class="container">
+    <div class="numbers-grid">
+      <div class="number-cell fade-up" data-delay="1">
+        <div class="big-num"><span class="counter" data-target="97">0</span>%</div>
+        <div class="num-lbl">Win Rate</div>
+        <div class="num-desc">Across all contested matters</div>
+      </div>
+      <div class="number-cell fade-up" data-delay="2">
+        <div class="big-num">$<span class="counter" data-target="18">0</span>B</div>
+        <div class="num-lbl">Value Defended</div>
+        <div class="num-desc">In client assets & interests</div>
+      </div>
+      <div class="number-cell fade-up" data-delay="3">
+        <div class="big-num"><span class="counter" data-target="52">0</span>+</div>
+        <div class="num-lbl">Global Offices</div>
+        <div class="num-desc">Across 6 continents</div>
+      </div>
+      <div class="number-cell fade-up" data-delay="4">
+        <div class="big-num"><span class="counter" data-target="1400">0</span>+</div>
+        <div class="num-lbl">Cases Concluded</div>
+        <div class="num-desc">Landmark precedents set</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ TESTIMONIALS ══════════ -->
+<section class="testimonials" id="testimonials">
+  <div class="container">
+    <div class="testimonials-head fade-up">
+      <div class="eyebrow"><i class="fas fa-star"></i> Endorsements</div>
+      <h2 class="section-title">Trusted by <span class="gold">global leaders</span></h2>
+      <div class="divider divider-center"></div>
+      <p class="section-sub">Reflections from those who have experienced our strategic depth and unwavering representation at the highest levels.</p>
+    </div>
+    <div class="testimonials-grid">
+      <div class="tcard fade-up" data-delay="1">
+        <div class="tcard-quote">"</div>
+        <div class="tcard-stars">★★★★★</div>
+        <p class="tcard-text">Justice Consulting delivered a landmark victory in a multi-jurisdictional dispute that redefined precedent. Their analytical rigor and poise under extraordinary pressure are genuinely unmatched.</p>
+        <div class="tcard-author">
+          <div class="tcard-avatar"><i class="fas fa-user-tie"></i></div>
+          <div>
+            <div class="tcard-name">Isabelle R. Laurent</div>
+            <div class="tcard-role">General Counsel, Meridian Group</div>
+          </div>
+        </div>
+      </div>
+      <div class="tcard fade-up" data-delay="2">
+        <div class="tcard-quote">"</div>
+        <div class="tcard-stars">★★★★★</div>
+        <p class="tcard-text">When reputation and regulatory exposure were paramount, Justice Consulting crafted a defense that not only prevailed but fortified our global standing for years to come.</p>
+        <div class="tcard-author">
+          <div class="tcard-avatar"><i class="fas fa-chart-line"></i></div>
+          <div>
+            <div class="tcard-name">Alexander T. Vance</div>
+            <div class="tcard-role">Chairman, Vance Holdings International</div>
+          </div>
+        </div>
+      </div>
+      <div class="tcard fade-up" data-delay="1">
+        <div class="tcard-quote">"</div>
+        <div class="tcard-stars">★★★★★</div>
+        <p class="tcard-text">Their sovereign arbitration team navigated a complex cross-border dispute with breathtaking efficiency. The outcome surpassed every expectation we had going in.</p>
+        <div class="tcard-author">
+          <div class="tcard-avatar"><i class="fas fa-globe"></i></div>
+          <div>
+            <div class="tcard-name">Minister N. Obafemi</div>
+            <div class="tcard-role">State Counsel, West African Union</div>
+          </div>
+        </div>
+      </div>
+      <div class="tcard fade-up" data-delay="2">
+        <div class="tcard-quote">"</div>
+        <div class="tcard-stars">★★★★★</div>
+        <p class="tcard-text">In thirty years of corporate governance, I have never encountered a team with this caliber of strategic insight combined with absolute ethical precision. Exceptional in every regard.</p>
+        <div class="tcard-author">
+          <div class="tcard-avatar"><i class="fas fa-building"></i></div>
+          <div>
+            <div class="tcard-name">Dr. C. Eriksson</div>
+            <div class="tcard-role">CEO, Nordic Capital Group</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ CTA ══════════ -->
+<section class="cta-section" id="cta">
+  <div class="container cta-inner fade-up">
+    <div class="eyebrow" style="justify-content:center;"><i class="fas fa-lock"></i> Privileged & Protected</div>
+    <h2>Seek counsel of<br>the highest order.</h2>
+    <p>Your legacy, reputation, and future require uncompromising representation from those who have never accepted second place.</p>
+    <div class="cta-actions">
+      <a href="#" class="btn btn-dark">Arrange Confidential Meeting <i class="fas fa-arrow-right"></i></a>
+      <a href="#" class="btn btn-ghost">View Our Record</a>
+    </div>
+    <p class="cta-note">⚖ <span>24h Priority Response</span> · Attorney–Client Privilege Guaranteed · Geneva · New York · Singapore</p>
+  </div>
+</section>
+
+<!-- ══════════ FOOTER ══════════ -->
 <footer>
   <div class="container">
     <div class="footer-grid">
-      <div data-aos="fade-up">
-        <div class="footer-logo">JUSTICE CONSULTING</div>
-        <p style="margin: 12px 0 20px; font-size: 0.85rem;">Global elite counsel · Where integrity meets legal eminence.</p>
-        <div style="display: flex; gap: 22px; font-size: 1.2rem;">
-          <i class="fab fa-linkedin-in" style="cursor: pointer;"></i>
-          <i class="fab fa-twitter" style="cursor: pointer;"></i>
-          <i class="far fa-building" style="cursor: pointer;"></i>
+      <div>
+        <div class="footer-logo">JUSTICE <span>CONSULTING</span></div>
+        <p class="footer-desc">Global elite counsel — where integrity meets legal eminence. Serving sovereign entities, institutions, and global enterprises since 1998.</p>
+        <div class="footer-socials">
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fas fa-building"></i></a>
+          <a href="#"><i class="fas fa-globe"></i></a>
         </div>
       </div>
-      <div class="footer-links" data-aos="fade-up" data-aos-delay="100">
-        <h4 style="color:#EADDBD; margin-bottom: 20px;">Expertise</h4>
+      <div class="footer-col">
+        <h4>Expertise</h4>
         <a href="#">International Arbitration</a>
         <a href="#">Corporate Defense</a>
         <a href="#">Risk & Governance</a>
+        <a href="#">Sovereign Disputes</a>
+        <a href="#">M&A Advisory</a>
       </div>
-      <div class="footer-links" data-aos="fade-up" data-aos-delay="200">
-        <h4 style="color:#EADDBD; margin-bottom: 20px;">Firm</h4>
-        <a href="#">Partners</a>
+      <div class="footer-col">
+        <h4>Firm</h4>
+        <a href="#">Our Partners</a>
         <a href="#">Accolades</a>
         <a href="#">Pro Bono Legacy</a>
+        <a href="#">Careers</a>
+        <a href="#">Press & Media</a>
       </div>
-      <div class="footer-links" data-aos="fade-up" data-aos-delay="300">
-        <h4 style="color:#EADDBD; margin-bottom: 20px;">Connect</h4>
-        <a href="#"><i class="fas fa-phone-alt" style="margin-right: 10px;"></i> +44 20 7946 0138</a>
-        <a href="#"><i class="fas fa-envelope"></i> counsel@justice.com</a>
-        <a href="#">Geneva · New York · Singapore</a>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <div class="contact-item"><i class="fas fa-phone-alt"></i> +44 20 7946 0138</div>
+        <div class="contact-item"><i class="fas fa-envelope"></i> counsel@justice.com</div>
+        <div class="contact-item"><i class="fas fa-map-marker-alt"></i> Geneva · New York · Singapore · Dubai</div>
       </div>
     </div>
-    <div class="copyright" data-aos="fade-up">
-      © 2025 Justice Consulting — The pinnacle of strategic legal counsel. All rights reserved.
+    <div class="footer-bottom">
+      <p>© 2025 Justice Consulting — The pinnacle of strategic legal counsel. All rights reserved.</p>
+      <div class="footer-badge">Privileged · Sovereign · Elite</div>
     </div>
   </div>
 </footer>
 
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
-  AOS.init({ duration: 750, once: false, offset: 80, easing: 'ease-out' });
+  // ─── CUSTOM CURSOR ───
+  const dot = document.getElementById('cDot');
+  const ring = document.getElementById('cRing');
+  if (dot && ring && window.matchMedia('(pointer: fine)').matches) {
+    let mx=0,my=0,rx=0,ry=0;
+    document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; });
+    (function animate() {
+      rx += (mx-rx)*.13; ry += (my-ry)*.13;
+      dot.style.left = mx+'px'; dot.style.top = my+'px';
+      ring.style.left = rx+'px'; ring.style.top = ry+'px';
+      requestAnimationFrame(animate);
+    })();
+    document.querySelectorAll('a,button,.pillar-card,.tcard,.practice-list li').forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        ring.style.width='56px'; ring.style.height='56px';
+        ring.style.borderColor='rgba(201,169,110,.8)';
+        ring.style.background='rgba(201,169,110,.06)';
+      });
+      el.addEventListener('mouseleave', () => {
+        ring.style.width='40px'; ring.style.height='40px';
+        ring.style.borderColor='rgba(201,169,110,.6)';
+        ring.style.background='transparent';
+      });
+    });
+  }
 
-  // Mobile menu toggle
-  const menuToggle = document.getElementById('menuToggle');
+  // ─── HAMBURGER ───
+  const hamburger = document.getElementById('hamburger');
   const navLinks = document.getElementById('navLinks');
-  if(menuToggle) {
-    menuToggle.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
-      const icon = menuToggle.querySelector('i');
-      if(navLinks.classList.contains('active')) {
-        icon.classList.remove('fa-bars');
-        icon.classList.add('fa-times');
-      } else {
-        icon.classList.remove('fa-times');
-        icon.classList.add('fa-bars');
-      }
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    navLinks.classList.toggle('open');
+  });
+  navLinks.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      navLinks.classList.remove('open');
     });
-  }
-
-  // Counter animation
-  const stats = document.querySelectorAll('.stat-number');
-  let started = false;
-  function startCounter() {
-    stats.forEach(stat => {
-      let target = parseFloat(stat.getAttribute('data-target'));
-      let count = 0;
-      let speed = target / 50;
-      function update() {
-        count += speed;
-        if (count < target) {
-          stat.innerText = count.toFixed(1);
-          requestAnimationFrame(update);
-        } else {
-          stat.innerText = target;
-        }
-      }
-      update();
-    });
-  }
-  function showStats() {
-    const section = document.querySelector('.hero-stats');
-    if(!section) return;
-    const top = section.getBoundingClientRect().top;
-    if (top < window.innerHeight - 100 && !started) {
-      startCounter();
-      started = true;
-    }
-  }
-  window.addEventListener('scroll', showStats);
-  showStats();
-
-  // Header scroll
-  window.addEventListener('scroll', () => {
-    const header = document.querySelector('header');
-    if(window.scrollY > 40) header.classList.add('scrolled');
-    else header.classList.remove('scrolled');
   });
 
-  // Custom cursor animation (desktop only)
-  if(window.innerWidth > 1024) {
-    const dot = document.querySelector('.cursor-dot');
-    const outline = document.querySelector('.cursor-outline');
-    if(dot && outline) {
-      let mx = 0, my = 0, ox = 0, oy = 0;
-      document.addEventListener('mousemove', (e) => { mx = e.clientX; my = e.clientY; });
-      function animate() {
-        ox += (mx - ox) * 0.12;
-        oy += (my - oy) * 0.12;
-        outline.style.transform = `translate(${ox}px, ${oy}px) translate(-50%, -50%)`;
-        dot.style.transform = `translate(${mx}px, ${my}px) translate(-50%, -50%)`;
-        requestAnimationFrame(animate);
+  // ─── HEADER SCROLL ───
+  const header = document.getElementById('header');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 50);
+  });
+
+  // ─── INTERSECTION OBSERVER (scroll animations) ───
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.fade-up,.fade-left,.fade-right').forEach(el => {
+    if (!el.classList.contains('visible')) io.observe(el);
+  });
+
+  // ─── COUNTER ANIMATION ───
+  const counters = document.querySelectorAll('.counter');
+  const counterIO = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el = e.target;
+      const target = parseFloat(el.dataset.target);
+      const isInt = Number.isInteger(target);
+      let start = 0;
+      const duration = 1600;
+      const startTime = performance.now();
+      function tick(now) {
+        const p = Math.min((now - startTime) / duration, 1);
+        const ease = 1 - Math.pow(1-p, 3);
+        const val = ease * target;
+        el.textContent = isInt ? Math.round(val) : val.toFixed(1);
+        if (p < 1) requestAnimationFrame(tick);
+        else el.textContent = isInt ? target : target.toFixed(1);
       }
-      animate();
-      const interactive = document.querySelectorAll('a, button, .btn-primary, .btn-outline, .pillar-card, .testimonial-card, .practice-list li');
-      interactive.forEach(el => {
-        el.addEventListener('mouseenter', () => { outline.style.width = '64px'; outline.style.height = '64px'; outline.style.borderColor = '#D8B16B'; outline.style.backgroundColor = 'rgba(198,161,91,0.08)'; dot.style.backgroundColor = '#E5BC77'; });
-        el.addEventListener('mouseleave', () => { outline.style.width = '44px'; outline.style.height = '44px'; outline.style.borderColor = 'rgba(198, 161, 91, 0.7)'; outline.style.backgroundColor = 'transparent'; dot.style.backgroundColor = '#C6A15B'; });
-      });
-    }
-  }
+      requestAnimationFrame(tick);
+      counterIO.unobserve(el);
+    });
+  }, { threshold: 0.5 });
+  counters.forEach(c => counterIO.observe(c));
 </script>
 </body>
 </html>
